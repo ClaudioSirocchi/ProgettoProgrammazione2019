@@ -1,5 +1,6 @@
 package it.univpm.gdpElaborationApplication.program;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,8 +18,7 @@ import org.json.simple.parser.ParseException;
 
 
 public class DownloadData {
-	
-	public void DownloadUrlData() {
+	public static void DownloadUrlData() {
 
 		String url = "http://data.europa.eu/euodp/data/api/3/action/package_show?id=32qw3x5LQIpuI8y6C1Lfhg";
 		try {
@@ -50,8 +50,8 @@ public class DownloadData {
 			        String format = (String)o1.get("format");
 			        String urlD = (String)o1.get("url");
 			        System.out.println(format + " | " + urlD);
-			        if(format.equals("csv")) {
-			        	download(urlD, "t1.csv");
+			        if(format.equals("http://publications.europa.eu/resource/authority/file-type/CSV")) {
+			        	Download(urlD, "gdp.csv");
 			        }
 			    }
 			}
@@ -63,7 +63,7 @@ public class DownloadData {
 		}
 	}
 	
-	public void DownloadUrlData(String selectedUrl) {
+	public static void DownloadUrlData(String selectedUrl) {
 
 		String url = selectedUrl;
 		try {
@@ -95,8 +95,8 @@ public class DownloadData {
 			        String format = (String)o1.get("format");
 			        String urlD = (String)o1.get("url");
 			        System.out.println(format + " | " + urlD);
-			        if(format.equals("csv")) {
-			        	download(urlD, "t1.csv");
+			        if(format.equals("http://publications.europa.eu/resource/authority/file-type/CSV")) {
+			        	Download(urlD, "gdp.csv");
 			        }
 			    }
 			}
@@ -108,10 +108,9 @@ public class DownloadData {
 		}
 	}
 	
-	public static void download(String url, String fileName) throws Exception {
+	public static void Download(String url, String fileName) throws Exception {
 	    try (InputStream in = URI.create(url).toURL().openStream()) {
 	        Files.copy(in, Paths.get(fileName));
 	    }
 	}
-
 }
