@@ -11,14 +11,15 @@ public class GdpElaborationApplication {
 
 	
 
-	private static Scanner input;
-
+	
 	public static void main(String[] args) throws IOException{
 		SpringApplication.run(GdpElaborationApplication.class, args);
 		selectUrl();
 
 	}
 	
+	private static Scanner input;
+
 	public static void selectUrl() throws IOException {
 		input = new Scanner(System.in);
 		BufferedReader urlinput = new BufferedReader(new InputStreamReader(System.in));

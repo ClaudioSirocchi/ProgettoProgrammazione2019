@@ -5,7 +5,7 @@ public class Rilevazione {
 	private String geo;
 	private String unit;
 	private String obj;
-	private GDP gdp;
+	private GDP[] gdp;
 	
 	public char getFrequenza() {
 		return frequenza;
@@ -31,10 +31,10 @@ public class Rilevazione {
 	public void setObj(String obj) {
 		this.obj = obj;
 	}
-	public GDP getGdp() {
+	public GDP[] getGdp() {
 		return gdp;
 	}
-	public void setGdp(GDP gdp) {
+	public void setGdp(GDP[] gdp) {
 		this.gdp = gdp;
 	}
 	
