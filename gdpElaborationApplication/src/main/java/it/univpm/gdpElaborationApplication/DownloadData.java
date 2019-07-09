@@ -35,6 +35,7 @@ public class DownloadData {
 			DownloadData.DownloadUrlData();
 			break;
 		}
+		input.close();
 	}
 	
 	public static void DownloadUrlData() {
