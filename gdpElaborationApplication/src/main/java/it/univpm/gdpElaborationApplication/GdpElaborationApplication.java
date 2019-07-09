@@ -6,8 +6,6 @@ import java.util.Scanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import it.univpm.gdpElaborationApplication.program.DownloadData;
-
 @SpringBootApplication
 public class GdpElaborationApplication {
 
@@ -15,8 +13,13 @@ public class GdpElaborationApplication {
 
 	private static Scanner input;
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException{
 		SpringApplication.run(GdpElaborationApplication.class, args);
+		selectUrl();
+
+	}
+	
+	public static void selectUrl() throws IOException {
 		input = new Scanner(System.in);
 		BufferedReader urlinput = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Benvenuto nel programma di analisi dei GDP europei"
@@ -32,7 +35,6 @@ public class GdpElaborationApplication {
 			DownloadData.DownloadUrlData();
 			break;
 		}
-
 	}
 
 }

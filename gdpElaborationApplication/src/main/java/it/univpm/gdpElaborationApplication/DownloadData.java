@@ -1,4 +1,4 @@
-package it.univpm.gdpElaborationApplication.program;
+package it.univpm.gdpElaborationApplication;
 
 
 import java.io.BufferedReader;
@@ -10,6 +10,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,6 +19,24 @@ import org.json.simple.parser.ParseException;
 
 
 public class DownloadData {
+	public static void selectUrl() throws IOException {
+		Scanner input = new Scanner(System.in);
+		BufferedReader urlinput = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Benvenuto nel programma di analisi dei GDP europei"
+				+ "\nDigita 1 se vuoi inserire un url oppupre 2 per l'url di default");
+		int selector=input.nextInt();
+		switch (selector) {
+		case 1:
+			System.out.println("inserisci l'url");
+			String selurl=urlinput.readLine();
+			DownloadData.DownloadUrlData(selurl);
+			break;
+		case 2:
+			DownloadData.DownloadUrlData();
+			break;
+		}
+	}
+	
 	public static void DownloadUrlData() {
 
 		String url = "http://data.europa.eu/euodp/data/api/3/action/package_show?id=32qw3x5LQIpuI8y6C1Lfhg";
