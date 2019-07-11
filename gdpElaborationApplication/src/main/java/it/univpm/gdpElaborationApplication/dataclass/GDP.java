@@ -1,6 +1,7 @@
 package it.univpm.gdpElaborationApplication.dataclass;
 
 public class GDP {
+
 	private int date;
 	private double value;
 	
@@ -14,6 +15,11 @@ public class GDP {
 		return value;
 	}
 	public void setValue(float value) {
+		this.value = value;
+	}	
+	public GDP(int date, double value) {
+		super();
+		this.date = date;
 		this.value = value;
 	}
 }

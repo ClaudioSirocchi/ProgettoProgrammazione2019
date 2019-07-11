@@ -1,12 +1,23 @@
 package it.univpm.gdpElaborationApplication.dataclass;
 
+import java.util.Vector;
+
 public class Rilevazione {
+
+
 	private char frequenza;
 	private String geo;
 	private String unit;
 	private String obj;
-	private GDP[] gdp;
+	private Vector<GDP> gdpdata;
+	private double appop;
 	
+	public double getAppop() {
+		return appop;
+	}
+	public void setAppop(double appop) {
+		this.appop = appop;
+	}
 	public char getFrequenza() {
 		return frequenza;
 	}
@@ -31,11 +42,23 @@ public class Rilevazione {
 	public void setObj(String obj) {
 		this.obj = obj;
 	}
-	public GDP[] getGdp() {
-		return gdp;
+	public Vector<GDP> getGdpdata() {
+		return gdpdata;
 	}
-	public void setGdp(GDP[] gdp) {
-		this.gdp = gdp;
+	public void setGdpdata(Vector<GDP> gdpdata) {
+		this.gdpdata = gdpdata;
 	}
+
+	public Rilevazione(char frequenza, String geo, String unit, String obj, Vector<GDP> gdpdata) {
+		super();
+		this.frequenza = frequenza;
+		this.geo = geo;
+		this.unit = unit;
+		this.obj = obj;
+		this.gdpdata=gdpdata;
+	}
+
+
+
 	
 }
