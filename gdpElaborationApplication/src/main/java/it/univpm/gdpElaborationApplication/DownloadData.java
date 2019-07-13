@@ -10,6 +10,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
@@ -134,7 +135,7 @@ public class DownloadData {
 	
 	public static void Download(String url, String fileName) throws Exception {
 	    try (InputStream in = URI.create(url).toURL().openStream()) {
-	        Files.copy(in, Paths.get(fileName));
+	        Files.copy(in, Paths.get(fileName),StandardCopyOption.REPLACE_EXISTING);
 	    }
 	}
 }

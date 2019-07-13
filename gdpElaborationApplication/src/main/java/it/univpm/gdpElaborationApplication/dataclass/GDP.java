@@ -18,8 +18,11 @@ public class GDP {
 		this.value = value;
 	}	
 	public GDP(int date, double value) {
-		super();
 		this.date = date;
 		this.value = value;
+	}
+	@Override
+	public String toString() {
+		return "date=" + date + ", value=" + value;
 	}
 }
