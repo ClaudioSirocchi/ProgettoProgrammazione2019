@@ -10,6 +10,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
@@ -71,11 +72,13 @@ public class DownloadData {
 			        String urlD = (String)o1.get("url");
 			        System.out.println(format + " | " + urlD);
 			        if(format.equals("http://publications.europa.eu/resource/authority/file-type/CSV")) {
+			        	System.out.println( "OK, Il link in uso contiene un csv, Effettuo il download!" );
 			        	Download(urlD, "gdp.csv");
+			        	System.out.println("Di seguito altri elementi presenti nel link:\n");
 			        }
 			    }
 			}
-			System.out.println( "OK, Il link in uso contiene un csv, Effettuo il download!" );
+			System.out.println( "Download Effettuato" );
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -116,11 +119,13 @@ public class DownloadData {
 			        String urlD = (String)o1.get("url");
 			        System.out.println(format + " | " + urlD);
 			        if(format.equals("http://publications.europa.eu/resource/authority/file-type/CSV")) {
+			        	System.out.println( "OK, Il link in uso contiene un csv, Effettuo il download!" );
 			        	Download(urlD, "gdp.csv");
+			        	System.out.println("Di seguito altri elementi presenti nel link:\n");
 			        }
 			    }
 			}
-			System.out.println( "OK, Il link in uso contiene un csv, Effettuo il download!" );
+			System.out.println( "Download Effettuato" );
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -130,7 +135,7 @@ public class DownloadData {
 	
 	public static void Download(String url, String fileName) throws Exception {
 	    try (InputStream in = URI.create(url).toURL().openStream()) {
-	        Files.copy(in, Paths.get(fileName));
+	        Files.copy(in, Paths.get(fileName),StandardCopyOption.REPLACE_EXISTING);
 	    }
 	}
 }
