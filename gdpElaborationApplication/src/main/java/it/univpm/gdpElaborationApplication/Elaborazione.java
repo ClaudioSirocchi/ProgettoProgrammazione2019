@@ -39,7 +39,7 @@ public class Elaborazione{
 	}
 	
 	public void Variazione(GDP dateI, GDP dateF) {
-		float somma = dateI.getValue()+dateF.getValue();
+		double somma = dateI.getValue()+dateF.getValue();
 	    Variazione =((dateF.getValue()-dateI.getValue())/dateI.getValue());
 	    Percentuale = (float) ((Variazione*100)/somma);
 	    

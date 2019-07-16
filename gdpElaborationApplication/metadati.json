@@ -1,0 +1,36 @@
+[
+{
+"alias":"Frequenza",
+"source field":"Frequenza di Rilevazione",
+"type":"Char"
+},
+{
+"alias":"Geo",
+"source field":"Località geografica Rilevazione",
+"type":"String"
+},
+{
+"alias":"Unit",
+"source field":"Unità di rilevamento",
+"type":"String"
+},
+{
+"alias":"Obj",
+"source field":"Nome oggetto di rilevazione",
+"type":"String"
+},
+{
+"alias":[{
+"alias":"Date",
+"source field":"Data Rilevazione",
+"type":"int"
+},{
+"alias":"Value",
+"source field":"Valore di rilevazione",
+"type":"double"
+}],
+"source field":"Vettore di rilevazioni",
+"type":"Char"
+}
+
+]
