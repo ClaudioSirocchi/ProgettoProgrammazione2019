@@ -12,10 +12,14 @@ public class Rilevazione {
 	private String obj;
 	private Vector<GDP> gdpdata;
 	
+<<<<<<< HEAD
 	@metadati(alias="Frequenza", sourcefield="Frequenza di Rilevazione", type="Char")
+=======
+>>>>>>> 31342636a555e0e57bb9878c8689cff42004b392
 	public char getFrequenza() {
 		return frequenza;
 	}
+	
 	public void setFrequenza(char frequenza) {
 		this.frequenza = frequenza;
 	}
@@ -28,7 +32,10 @@ public class Rilevazione {
 		this.geo = geo;
 	}
 	
+<<<<<<< HEAD
 	@metadati(alias="Unit", sourcefield="Unità di rilevamento", type="String")
+=======
+>>>>>>> 31342636a555e0e57bb9878c8689cff42004b392
 	public String getUnit() {
 		return unit;
 	}
@@ -36,7 +43,10 @@ public class Rilevazione {
 		this.unit = unit;
 	}
 	
+<<<<<<< HEAD
 	@metadati(alias="Obj", sourcefield="Nome oggetto di rilevazione", type="String")
+=======
+>>>>>>> 31342636a555e0e57bb9878c8689cff42004b392
 	public String getObj() {
 		return obj;
 	}
@@ -44,15 +54,20 @@ public class Rilevazione {
 		this.obj = obj;
 	}
 	
+<<<<<<< HEAD
 	@metadati(alias="Gdpdata", sourcefield="Vettore di rilevazioni", type="Char")
+=======
+>>>>>>> 31342636a555e0e57bb9878c8689cff42004b392
 	public Vector<GDP> getGdpdata() {
 		return gdpdata;
 	}
 	
+<<<<<<< HEAD
+=======
+>>>>>>> 31342636a555e0e57bb9878c8689cff42004b392
 	public void setGdpdata(Vector<GDP> gdpdata) {
 		this.gdpdata = gdpdata;
 	}
-
 	public Rilevazione(char frequenza, String geo, String unit, String obj, Vector<GDP> gdpdata) {
 		this.frequenza = frequenza;
 		this.geo = geo;
@@ -61,6 +76,7 @@ public class Rilevazione {
 		this.gdpdata=gdpdata;
 	}
 	
+<<<<<<< HEAD
 	public Rilevazione() {
 		this.frequenza='\0';
 		this.geo ="";
@@ -68,6 +84,8 @@ public class Rilevazione {
 		this.obj = "";
 		this.gdpdata=null;
 	}
+=======
+>>>>>>> 31342636a555e0e57bb9878c8689cff42004b392
 	@Override
 	public String toString() {
 		return "frequenza=" + frequenza + ", geo=" + geo + ", unit=" + unit + ", obj=" + obj + ", gdpdata="
