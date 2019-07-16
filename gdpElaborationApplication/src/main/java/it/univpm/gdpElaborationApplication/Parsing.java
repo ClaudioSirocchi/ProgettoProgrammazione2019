@@ -14,11 +14,6 @@ import com.opencsv.CSVWriter;
 import it.univpm.gdpElaborationApplication.dataclass.GDP;
 import it.univpm.gdpElaborationApplication.dataclass.Rilevazione;
 
-/**
- * Classe Parsing per effettuare il parsing dei dati
- * @author Pistagnesi Sirocchi
- * @version 1.0
- */ 
 public class Parsing {
 final static String DELIMITER1 = ";|,";
 private static String []header; //usato per stampare il nuovo file csv

@@ -23,14 +23,12 @@ public class Rilevazione {
 	private String obj;
 	private Vector<GDP> gdpdata;
 	
-<<<<<<< HEAD
 	@metadati(alias="Frequenza", sourcefield="Frequenza di Rilevazione", type="Char")
-=======
+
 	/**
 	 * Fornisce la frequenza del GDP
 	 * @return frequenza
 	 */
->>>>>>> 31342636a555e0e57bb9878c8689cff42004b392
 	public char getFrequenza() {
 		return frequenza;
 	}
@@ -39,18 +37,15 @@ public class Rilevazione {
      * Imposta la frequenza del GDP
      * @param frequenza
      */
-	public void setFrequenza(char frequenza) {
-		this.frequenza = frequenza;
-	}
 	
-<<<<<<< HEAD
+
 	@metadati(alias="Geo", sourcefield="Località geografica Rilevazione", type="String")
-=======
+
 	/**
 	 * Fornisce la città del GDP
 	 * @return geo
 	 */
->>>>>>> 31342636a555e0e57bb9878c8689cff42004b392
+
 	public String getGeo() {
 		return geo;
 	}
@@ -63,14 +58,14 @@ public class Rilevazione {
 		this.geo = geo;
 	}
 	
-<<<<<<< HEAD
 	@metadati(alias="Unit", sourcefield="Unità di rilevamento", type="String")
-=======
+
 	/**
 	 * Fornisce il tipo di dato
 	 * @return unit
 	 */
->>>>>>> 31342636a555e0e57bb9878c8689cff42004b392
+
+
 	public String getUnit() {
 		return unit;
 	}
@@ -83,14 +78,13 @@ public class Rilevazione {
 		this.unit = unit;
 	}
 	
-<<<<<<< HEAD
 	@metadati(alias="Obj", sourcefield="Nome oggetto di rilevazione", type="String")
-=======
+
 	/**
 	 * Fornisce l'obiettivo
 	 * @return obj
 	 */
->>>>>>> 31342636a555e0e57bb9878c8689cff42004b392
+
 	public String getObj() {
 		return obj;
 	}
@@ -103,25 +97,22 @@ public class Rilevazione {
 		this.obj = obj;
 	}
 	
-<<<<<<< HEAD
 	@metadati(alias="Gdpdata", sourcefield="Vettore di rilevazioni", type="Char")
-=======
+
 	/**
 	 * Fornisce il vettore GDP
 	 * @return dati del gdp
 	 */
->>>>>>> 31342636a555e0e57bb9878c8689cff42004b392
+
 	public Vector<GDP> getGdpdata() {
 		return gdpdata;
 	}
 	
-<<<<<<< HEAD
-=======
+
 	/**
      * Imposta il vettore GDP
      * @param dati del gdp
      */
->>>>>>> 31342636a555e0e57bb9878c8689cff42004b392
 	public void setGdpdata(Vector<GDP> gdpdata) {
 		this.gdpdata = gdpdata;
 	}
@@ -134,6 +125,8 @@ public class Rilevazione {
 	    * @param obj obiettivo della rilevazione
 	    * @param gdpdata vettore gdp
 	    */
+
+
 	public Rilevazione(char frequenza, String geo, String unit, String obj, Vector<GDP> gdpdata) {
 		this.frequenza = frequenza;
 		this.geo = geo;
@@ -142,7 +135,6 @@ public class Rilevazione {
 		this.gdpdata=gdpdata;
 	}
 	
-<<<<<<< HEAD
 	public Rilevazione() {
 		this.frequenza='\0';
 		this.geo ="";
@@ -150,12 +142,12 @@ public class Rilevazione {
 		this.obj = "";
 		this.gdpdata=null;
 	}
-=======
+
 	/**
 	    * Fornisce i dati della rilevazione sotto forma di una stringa di testo
 	    * @return stringa con i dati della rilevazione
 	    */
->>>>>>> 31342636a555e0e57bb9878c8689cff42004b392
+
 	@Override
 	public String toString() {
 		return "frequenza=" + frequenza + ", geo=" + geo + ", unit=" + unit + ", obj=" + obj + ", gdpdata="

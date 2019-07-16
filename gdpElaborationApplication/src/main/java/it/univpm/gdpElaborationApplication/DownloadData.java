@@ -18,16 +18,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 
-/**
- * Classe DownloadData per eseguire il download dei dati da Url
- * @author Pistagnesi Sirocchi
- * @version 1.0
- */ 
+
 public class DownloadData {
-	/**
-	 * Seleziona l'Url inserito o quello di default
-	 * @throws IOException
-	 */
 	public static void selectUrl() throws IOException {
 		Scanner input = new Scanner(System.in);
 		BufferedReader urlinput = new BufferedReader(new InputStreamReader(System.in));
@@ -47,9 +39,6 @@ public class DownloadData {
 		input.close();
 	}
 	
-	/**
-	 * Esegue il downlaod dell'Url di default
-	 */
 	public static void DownloadUrlData() {
 
 		String url = "http://data.europa.eu/euodp/data/api/3/action/package_show?id=32qw3x5LQIpuI8y6C1Lfhg";
@@ -97,10 +86,6 @@ public class DownloadData {
 		}
 	}
 	
-	/**
-	 * Esegue il download dell'Url inserito
-	 * @param selectedUrl
-	 */
 	public static void DownloadUrlData(String selectedUrl) {
 
 		String url = selectedUrl;
@@ -148,12 +133,6 @@ public class DownloadData {
 		}
 	}
 	
-	/**
-	 * Verifica che il file esiste già, in caso positivo lo sostituisce
-	 * @param url
-	 * @param fileName
-	 * @throws Exception
-	 */
 	public static void Download(String url, String fileName) throws Exception {
 	    try (InputStream in = URI.create(url).toURL().openStream()) {
 	        Files.copy(in, Paths.get(fileName),StandardCopyOption.REPLACE_EXISTING);
