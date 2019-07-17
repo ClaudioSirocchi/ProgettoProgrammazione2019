@@ -1,49 +1,141 @@
 package it.univpm.gdpElaborationApplication;
 
+import java.util.Vector;
+
+import org.json.simple.JSONObject;
+
 import it.univpm.gdpElaborationApplication.dataclass.GDP;
+import it.univpm.gdpElaborationApplication.dataclass.MetaJson.metadati;
 
 public class Elaborazione{
-	private double Avg;
-	private GDP Min;
-	private GDP Max;
-	private double Percentuale;
-	private double Variazione;
+	private double avg;
+	private GDP min;
+	private GDP max;
+	private double variazione;
 	
-	public void Media(GDP[] gdp){
-		int somma = 0;
-		for (int i =0; i <18; i ++) {
-			somma += gdp[i].getValue();
-		}
-		Avg = somma /18;
-		System . out . println (" La media e ’: " +Avg );	
+	public String campi= "\"Avg\",\"Min\",\"Max\",\"Variazione\"";
+    
+	@metadati(alias="avg", sourcefield="media dei valori rilevati", type="double")
+	public double getAvg() {
+		return avg;
+	}
+
+	public void setAvg(double avg) {
+		this.avg = avg;
+	}
+	@metadati(alias="min", sourcefield="minimo rilevarione riga", type="GDP")
+
+	public GDP getMin() {
+		return min;
+	}
+
+	public void setMin(GDP min) {
+		this.min = min;
+	}
+	@metadati(alias="max", sourcefield="massimo rilevarione riga", type="GDP")
+	public GDP getMax() {
+		return max;
+	}
+
+	public void setMax(GDP max) {
+		this.max = max;
+	}
+	@metadati(alias="variazione", sourcefield="variazione percentuale fra prima e ultima rilevazione", type="GDP")
+	public double getVariazione() {
+		return variazione;
+	}
+
+	public void setVariazione(double variazione) {
+		this.variazione = variazione;
 	}
 	
-	public void Minimo(GDP[] gdp) {
-		Min=gdp[0];
-		for(int i=0; i<=gdp.length-1; i=i+1) {
-			if(gdp[i].getValue() < Min.getValue()) {
-				Min=gdp[i];
+	
+	public Elaborazione() {
+		this.avg = 0;
+		this.min = null;
+		this.max = null;
+		this.variazione = 0;
+	}
+	
+	
+	public static double Media(Vector<GDP> gdpVect){
+		double somma=0;
+		for (int i =0; i <gdpVect.size(); i++) {
+			somma += gdpVect.get(i).getValue();
+		}
+		return (somma/gdpVect.size());
+	}
+
+	public GDP Minimo(Vector<GDP> gdpVect) {
+		GDP min=gdpVect.get(0);
+		for(int i=0; i<gdpVect.size()-1; i++) {
+			if(gdpVect.get(i).getValue() < min.getValue()) {
+				min=gdpVect.get(i);
 		    }
 		  }
-		System.out.println("Il minimo e' "+Min);
+		return min;
 	}
 	
-	public void Massimo(GDP[] gdp) {
-		Max=gdp[0];
-		for(int i=0; i<=gdp.length-1; i=i+1) {
-			if( gdp[i].getValue()>Max.getValue()) {
-				Max=gdp[i];
-		      }
+	public GDP Massimo(Vector<GDP> gdpVect) {
+		GDP max=gdpVect.get(0);
+		for(int i=0; i<gdpVect.size()-1; i++) {
+			if(gdpVect.get(i).getValue() > max.getValue()) {
+				max=gdpVect.get(i);
+		    }
 		  }
-		System.out.println("Il massimo e' "+Max);
+		return max;
 	}
 	
-	public void Variazione(GDP dateI, GDP dateF) {
+	public double Variazione(GDP dateI, GDP dateF) {
 		double somma = dateI.getValue()+dateF.getValue();
-	    Variazione =((dateF.getValue()-dateI.getValue())/dateI.getValue());
-	    Percentuale = (float) ((Variazione*100)/somma);
-	    
-	    System.out.println("La variazione percentuale e' "+Percentuale);
-	    
+		double percentuale;  													//controllare la divisione per zero
+	    variazione =((dateF.getValue()-dateI.getValue())/dateI.getValue());
+	    percentuale = (variazione*100)/somma;
+	    return percentuale;
 	}
+	
+	public Elaborazione elabora(Vector<GDP> valoririga) {
+		Elaborazione datiElab= new Elaborazione();
+			datiElab.avg=Media(valoririga);
+			datiElab.min=Minimo(valoririga);
+			datiElab.max=Massimo(valoririga);
+			datiElab.variazione=Variazione(valoririga.get(0),valoririga.get(valoririga.size()-1));
+    	return datiElab;
+    }
+	
+	@SuppressWarnings("unchecked")
+	public static JSONObject jsonSaveObj(String[] jsonData,String field,String fieldValue) {
+		JSONObject obj = new JSONObject();
+		for(int j=0; j<jsonData.length; j++)
+	    {
+	       obj.put("Frequenza", jsonData[0]);
+	       obj.put("Geo", jsonData[1]);
+	       obj.put("Unità", jsonData[2]);
+	       obj.put("Oggetto", jsonData[3]);
+	       obj.put(field, fieldValue);
+	    }  
+	    System.out.println(obj.toString());
+	    return obj;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static JSONObject jsonSaveObj(String[] jsonData,GDP gdpValue, String field) {
+		JSONObject obj = new JSONObject();
+		JSONObject gdpObj = new JSONObject();
+		gdpObj.put("Anno", Integer.toString(gdpValue.getDate()));
+		gdpObj.put("Valore", Double.toString(gdpValue.getValue()));
+		for(int j=0; j<jsonData.length; j++)
+		{
+		   obj.put("Frequenza", jsonData[0]);
+		   obj.put("Geo", jsonData[1]);
+		   obj.put("Unità", jsonData[2]);
+		   obj.put("Oggetto", jsonData[3]);
+		   obj.put(field,gdpObj);
+		} 
+	    System.out.println(obj.toString());
+	    return obj;
+	}
+	
+	
+	
 }

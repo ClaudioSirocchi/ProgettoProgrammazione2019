@@ -73,7 +73,7 @@ public class DownloadData {
 			        System.out.println(format + " | " + urlD);
 			        if(format.equals("http://publications.europa.eu/resource/authority/file-type/CSV")) {
 			        	System.out.println( "OK, Il link in uso contiene un csv, Effettuo il download!" );
-			        	Download(urlD, "gdp.csv");
+			        	Download(urlD, "savedfile/gdp.csv");
 			        	System.out.println("Di seguito altri elementi presenti nel link:\n");
 			        }
 			    }
@@ -120,7 +120,7 @@ public class DownloadData {
 			        System.out.println(format + " | " + urlD);
 			        if(format.equals("http://publications.europa.eu/resource/authority/file-type/CSV")) {
 			        	System.out.println( "OK, Il link in uso contiene un csv, Effettuo il download!" );
-			        	Download(urlD, "gdp.csv");
+			        	Download(urlD, "savedfile/gdp.csv");
 			        	System.out.println("Di seguito altri elementi presenti nel link:\n");
 			        }
 			    }

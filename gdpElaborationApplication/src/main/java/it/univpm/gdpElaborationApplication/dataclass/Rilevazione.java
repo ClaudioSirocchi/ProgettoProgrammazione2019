@@ -2,6 +2,8 @@ package it.univpm.gdpElaborationApplication.dataclass;
 
 import java.io.IOException;
 import java.util.Vector;
+
+import it.univpm.gdpElaborationApplication.Elaborazione;
 import it.univpm.gdpElaborationApplication.dataclass.MetaJson.metadati;
 
 /**
@@ -22,7 +24,18 @@ public class Rilevazione {
 	private String unit;
 	private String obj;
 	private Vector<GDP> gdpdata;
+	private Elaborazione datiElab;
 	
+	
+	@metadati(alias="DatiElab", sourcefield="Risultati ottenuti dall'elaborazione dei dati", type="Elaborazione")
+	public Elaborazione getDatiElab() {
+		return datiElab;
+	}
+
+	public void setDatiElab(Elaborazione datiElab) {
+		this.datiElab = datiElab;
+	}
+
 	@metadati(alias="Frequenza", sourcefield="Frequenza di Rilevazione", type="Char")
 
 	/**
@@ -37,6 +50,9 @@ public class Rilevazione {
      * Imposta la frequenza del GDP
      * @param frequenza
      */
+	public void setFrequenza(char frequenza) {
+		this.frequenza=frequenza;
+	}
 	
 
 	@metadati(alias="Geo", sourcefield="Località geografica Rilevazione", type="String")
@@ -126,7 +142,15 @@ public class Rilevazione {
 	    * @param gdpdata vettore gdp
 	    */
 
-
+	public Rilevazione(char frequenza, String geo, String unit, String obj, Vector<GDP> gdpdata, Elaborazione datiElab) {
+		this.frequenza = frequenza;
+		this.geo = geo;
+		this.unit = unit;
+		this.obj = obj;
+		this.gdpdata=gdpdata;
+		this.datiElab=datiElab;
+	}
+	
 	public Rilevazione(char frequenza, String geo, String unit, String obj, Vector<GDP> gdpdata) {
 		this.frequenza = frequenza;
 		this.geo = geo;
@@ -154,24 +178,27 @@ public class Rilevazione {
 				+ gdpdata + "\n";
 	}
 	
-	public String[] setRigaAsString(Rilevazione riga,int sizeString) {
+	
+	
+	public String[] setRigaAsString(Rilevazione riga,int sizeString) { 
 		String [] lineString= new String[sizeString];
 		lineString[0]= Character.toString(riga.getFrequenza());
 		lineString[1]= riga.getGeo();
 		lineString[2]=riga.getUnit();
 		lineString[3]=riga.getObj();
 		Vector<GDP> gdpVect = riga.getGdpdata();
-		int gdpStart=4;
-		for(int k=0;k<riga.gdpdata.size();k++) {
-			lineString[gdpStart++]=Double.toString(gdpVect.get(k).getValue());
+		int gdpStart=0;
+		for(int k=4;k<sizeString;k++) {//++controllare l'ho modificata in modo tale che posso riutilizzare il metodo scrivere le stringhe anche per i filtri
+			lineString[k]=Double.toString(gdpVect.get(gdpStart++).getValue());
 		}
 		return lineString;
 	}
 	
 	public String creaMetaDati() throws NoSuchMethodException, IOException{
-		String campi[]= {"Frequenza","Geo","Unit","Obj","Gdpdata"};
+		String campi[]= {"Frequenza","Geo","Unit","Obj","DatiElab","Gdpdata"};
 		MetaJson.jsonMetaRilevazione(this.getClass(), campi);
 		return ("Ho salvato il file Json");
 	}
+	
 	
 }

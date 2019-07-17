@@ -12,15 +12,15 @@ import it.univpm.gdpElaborationApplication.dataclass.Rilevazione;
 public class GdpElaborationApplication {
 
 	private static Vector<Rilevazione> tabella;
-
+	
 	public static void main(String[] args) throws IOException, NoSuchMethodException{
 		SpringApplication.run(GdpElaborationApplication.class, args);
 		Parsing.selectUrl();
 		tabella = Parsing.fileParsing();
 		tabella = Parsing.zeroDelete(tabella);
 		Parsing.outputCsvData(tabella);
-		Filtri.getMeta();
-		
+		Filtri.getMetaDati();
+		Filtri fileFilter =new Filtri(tabella);//crea il costruttore dei filtri per la tabella che passo come parametro
 	}
 
 

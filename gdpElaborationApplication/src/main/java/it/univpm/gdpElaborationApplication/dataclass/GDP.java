@@ -1,7 +1,6 @@
 package it.univpm.gdpElaborationApplication.dataclass;
 
-import java.io.IOException;
-
+import java.io.IOException; 
 import it.univpm.gdpElaborationApplication.dataclass.MetaJson.metadati;
 
 /**
@@ -14,7 +13,7 @@ public class GDP {
 	
 	private int date;
 	private double value;
-	
+
 	@metadati(alias="Date", sourcefield="Data Rilevazione", type="int")
 
 	/**
@@ -70,6 +69,10 @@ public class GDP {
 	@Override
 	public String toString() {
 		return "date=" + date + ", value=" + value;
+	}
+	
+	public String toStringJson() {
+		return "date\":\""+ date +"\",\"value\":\"" + value+"\"";
 	}
 	
 	public String creaMetaDati() throws NoSuchMethodException, IOException{
