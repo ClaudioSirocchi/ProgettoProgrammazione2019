@@ -14,10 +14,19 @@ import com.opencsv.CSVWriter;
 import it.univpm.gdpElaborationApplication.dataclass.GDP;
 import it.univpm.gdpElaborationApplication.dataclass.Rilevazione;
 
+/**
+ * Classe Parsing che esegue il parsing dei dati
+ * @author Pistagnesi Sirocchi
+ *
+ */
 public class Parsing {
 final static String DELIMITER1 = ";|,";
 private static String []header; //usato per stampare il nuovo file csv
 
+	/**
+	 * Seleziona l'Url di default o quello inserito
+	 * @throws IOException
+	 */
 	public static void selectUrl() throws IOException {
 		Scanner input = new Scanner(System.in);
 		BufferedReader urlinput = new BufferedReader(new InputStreamReader(System.in));
@@ -38,6 +47,10 @@ private static String []header; //usato per stampare il nuovo file csv
 		}
 	}
 	
+	/**
+	 * Resituisce la tabella delle rilevzioni
+	 * @return tabrilev
+	 */
 	public static Vector<Rilevazione> fileParsing() {
 		
 			Vector<Rilevazione> tabrilev = new Vector<Rilevazione>();
@@ -62,6 +75,12 @@ private static String []header; //usato per stampare il nuovo file csv
 			return tabrilev;
 	}
 
+	/**
+	 * Restituisce i valori gdp
+	 * @param campi
+	 * @param starty
+	 * @return gdp data
+	 */
 	private static Vector<GDP> addOnGdp(String[] campi,int starty) {
 		Vector<GDP> gdpdata = new Vector<GDP>();
 		for(int i=4;i<campi.length;i++) {
@@ -71,6 +90,11 @@ private static String []header; //usato per stampare il nuovo file csv
 		return gdpdata;
 	}
 	
+	/**
+	 * Rimuove le righe contenenti solo zero
+	 * @param tabella
+	 * @return tabella
+	 */
 	public static Vector<Rilevazione> zeroDelete(Vector<Rilevazione> tabella) {
 		for(int i=0;i<tabella.size();i++) {
 			Rilevazione riga=tabella.get(i);
@@ -89,6 +113,10 @@ private static String []header; //usato per stampare il nuovo file csv
 		return tabella;
 	}
 	
+	/**
+	 * Salva il file csv
+	 * @param tabella
+	 */
 	public static void outputCsvData(Vector<Rilevazione> tabella) 
 	{ 
 	    File file = new File("savedfile/outputData.csv"); //utilizzando la libreria open csv

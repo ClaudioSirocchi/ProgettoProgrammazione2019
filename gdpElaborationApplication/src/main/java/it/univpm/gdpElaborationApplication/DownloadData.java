@@ -17,9 +17,16 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 
-
+/**
+ * Classe DownloadData effettua il download del file CSV, nel caso in cui il link ne contenga una
+ * @author Pistagnesi Sirocchi
+ * @version 1.0 
+ */
 public class DownloadData {
 	
+	/**
+	 * Effettua il download del link di default nel caso in cui si digita 2
+	 */
 	public static void DownloadUrlData() {
 
 		String url = "http://data.europa.eu/euodp/data/api/3/action/package_show?id=32qw3x5LQIpuI8y6C1Lfhg";
@@ -67,6 +74,10 @@ public class DownloadData {
 		}
 	}
 	
+	/**
+	 * Effettua il dowmload del link inserito (caso in cui si digita 1)
+	 * @param selectedUrl URL inserito
+	 */
 	public static void DownloadUrlData(String selectedUrl) {
 
 		String url = selectedUrl;
@@ -114,6 +125,12 @@ public class DownloadData {
 		}
 	}
 	
+	/**
+	 * Scarica il CSV e lo salva chiamandolo fileName
+	 * @param url CSV da scaricare
+	 * @param fileName Destinazione e nome del file scaricato
+	 * @throws Exception Controlla è se possibile aprire un flusso di input dall'URL
+	 */
 	public static void Download(String url, String fileName) throws Exception {
 	    try (InputStream in = URI.create(url).toURL().openStream()) {
 	        Files.copy(in, Paths.get(fileName),StandardCopyOption.REPLACE_EXISTING);

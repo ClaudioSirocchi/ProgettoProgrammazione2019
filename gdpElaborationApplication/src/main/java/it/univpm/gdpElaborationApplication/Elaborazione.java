@@ -7,6 +7,11 @@ import org.json.simple.JSONObject;
 import it.univpm.gdpElaborationApplication.dataclass.GDP;
 import it.univpm.gdpElaborationApplication.dataclass.MetaJson.metadati;
 
+/**
+ * Classe Elaborazione
+ * @author Pistagnesi Sirocchi
+ * @version 1.0 
+ */
 public class Elaborazione{
 	private double avg;
 	private GDP min;
@@ -15,41 +20,77 @@ public class Elaborazione{
 	
 	public String campi= "\"Avg\",\"Min\",\"Max\",\"Variazione\"";
     
+	/**
+	 * Fornisce la media dei valori rilevati
+	 * @return avg Media
+	 */
 	@metadati(alias="avg", sourcefield="media dei valori rilevati", type="double")
 	public double getAvg() {
 		return avg;
 	}
-
+	
+	/**
+	 * Imposta la media dei valori rilevati
+	 * @param avg Media
+	 */
 	public void setAvg(double avg) {
 		this.avg = avg;
 	}
+	
+	/**
+	 * Fornisce il minimo dei valori rilevati
+	 * @return min Minimo
+	 */
 	@metadati(alias="min", sourcefield="minimo rilevarione riga", type="GDP")
-
 	public GDP getMin() {
 		return min;
 	}
 
+	/**
+	 * Imposta il minimo dei valori rilevati
+	 * @param min Minimo
+	 */
 	public void setMin(GDP min) {
 		this.min = min;
 	}
+	
+	/**
+	 * Fornisce il massimo dei valori rilevati
+	 * @return max Massimo
+	 */
 	@metadati(alias="max", sourcefield="massimo rilevarione riga", type="GDP")
 	public GDP getMax() {
 		return max;
 	}
 
+	/**
+	 * Imposta il massimo dei valori rilevati
+	 * @param max Massimo
+	 */
 	public void setMax(GDP max) {
 		this.max = max;
 	}
+	
+	/**
+	 * Fornisce la variazione percentuale dei valori rilevati
+	 * @return variazione
+	 */
 	@metadati(alias="variazione", sourcefield="variazione percentuale fra prima e ultima rilevazione", type="GDP")
 	public double getVariazione() {
 		return variazione;
 	}
 
+	/**
+	 * Imposta la variazione percentuale dei valori rilevati
+	 * @param variazione
+	 */
 	public void setVariazione(double variazione) {
 		this.variazione = variazione;
 	}
 	
-	
+	/**
+	 * Crea un'elaborazione fittizia uguale a zero.
+	 */
 	public Elaborazione() {
 		this.avg = 0;
 		this.min = null;
@@ -57,7 +98,11 @@ public class Elaborazione{
 		this.variazione = 0;
 	}
 	
-	
+	/**
+	 * Calcola la media dei valori rilevati
+	 * @param gdpVect Vettore dei GDP
+	 * @return Media
+	 */
 	public static double Media(Vector<GDP> gdpVect){
 		double somma=0;
 		for (int i =0; i <gdpVect.size(); i++) {
@@ -66,6 +111,11 @@ public class Elaborazione{
 		return (somma/gdpVect.size());
 	}
 
+	/**
+	 * Calcola il minimo dei valori rilevati
+	 * @param gdpVect
+	 * @return min
+	 */
 	public GDP Minimo(Vector<GDP> gdpVect) {
 		GDP min=gdpVect.get(0);
 		for(int i=0; i<gdpVect.size()-1; i++) {
@@ -76,6 +126,11 @@ public class Elaborazione{
 		return min;
 	}
 	
+	/**
+	 * Calcola il massimo dei valori rilevati
+	 * @param gdpVect
+	 * @return max
+	 */
 	public GDP Massimo(Vector<GDP> gdpVect) {
 		GDP max=gdpVect.get(0);
 		for(int i=0; i<gdpVect.size()-1; i++) {
@@ -86,6 +141,12 @@ public class Elaborazione{
 		return max;
 	}
 	
+	/**
+	 * Calcola la variazione percentuale dei gdp da una data iniziale a una finale
+	 * @param dateI Data iniziale
+	 * @param dateF Data finale
+	 * @return percentuale
+	 */
 	public double Variazione(GDP dateI, GDP dateF) {
 		double somma = dateI.getValue()+dateF.getValue();
 		double percentuale;  													//controllare la divisione per zero
@@ -94,6 +155,11 @@ public class Elaborazione{
 	    return percentuale;
 	}
 	
+	/**
+	 * Assegna per ogni riga valore massimo, minimo, media, variazione(calcolata fra il primo e l'ultimo anno)
+	 * @param valoririga
+	 * @return datiElab
+	 */
 	public Elaborazione elabora(Vector<GDP> valoririga) {
 		Elaborazione datiElab= new Elaborazione();
 			datiElab.avg=Media(valoririga);
@@ -103,6 +169,12 @@ public class Elaborazione{
     	return datiElab;
     }
 	
+	/**
+	 * Restituisce un json object che contiene tutti i valori della prima riga
+	 * @param jsonData
+	 * @param startyear
+	 * @return obj
+	 */
 	@SuppressWarnings("unchecked")
 	public static JSONObject jsonSaveObj(String[] jsonData,int startyear) {
 		JSONObject obj = new JSONObject();
@@ -123,7 +195,13 @@ public class Elaborazione{
 	    return obj;
 	}
 	
-	
+	/**
+	 * Restituisce un json object che contiene i valori della prima riga fino all'oggetto più un campo per i filtri
+	 * @param jsonData
+	 * @param field
+	 * @param fieldValue
+	 * @return obj
+	 */
 	@SuppressWarnings("unchecked")
 	public static JSONObject jsonSaveObj(String[] jsonData,String field,String fieldValue) {
 		JSONObject obj = new JSONObject();
@@ -138,6 +216,13 @@ public class Elaborazione{
 	    return obj;
 	}
 	
+	/**
+	 * Restituisce un json object che contiene i valori della prima riga a partire da un anno
+	 * @param jsonData
+	 * @param gdpValue
+	 * @param field
+	 * @return obj 
+	 */
 	@SuppressWarnings("unchecked")
 	public static JSONObject jsonSaveObj(String[] jsonData,GDP gdpValue, String field) {
 		JSONObject obj = new JSONObject();

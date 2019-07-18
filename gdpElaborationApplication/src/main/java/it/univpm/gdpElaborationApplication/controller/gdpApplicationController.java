@@ -10,10 +10,19 @@ import org.springframework.web.bind.annotation.RestController;
 import it.univpm.gdpElaborationApplication.Filtri;
 import it.univpm.gdpElaborationApplication.dataclass.GDP;
 
-
-
+/**
+ * Classe gdpApplicationController
+ * @author Pistagnesi Sirocchi
+ *
+ */
 @RestController
 public class gdpApplicationController {
+		
+		/**
+		 * Restituisce i dati contenuti in una tabella oppure con l'utilizzo dei parametri, tramite Spring, restituisce i campi della tabella
+		 * che contengono un oggetto indicato oppure i campi della tabella che contengono un geo indicato
+		 * @return search
+		 */
 		@GetMapping("/dati")
 		public JSONArray dati(@RequestParam(name="campo", defaultValue="0") String campo,@RequestParam(name="valore", defaultValue="0") String valore) {
 		JSONArray search;
@@ -30,6 +39,13 @@ public class gdpApplicationController {
 		return search;
 		}
 		
+		/**
+		 * Restituisce il valore medio gdp dei campi contenuti in una tabella oppure con l'utilizzo dei parametri, tramite Spring, 
+		 * restituisce il valore medio gdp dei campi contenuti in una tabella maggiori di un determinato valore passato come
+		 * parametro oppure restituisce il valore medio gdp dei campi contenuti in una tabella minori di un determinato valore passato come
+		 * parametro
+		 * @return Filtri.media
+		 */
 		@GetMapping("/media")
 		public JSONArray media(@RequestParam(name="operatore",defaultValue="0") String operatore, @RequestParam(name="valore",defaultValue="0") double valore) {
 		if(operatore.equals("<")|operatore.equals(">"))
@@ -38,6 +54,13 @@ public class gdpApplicationController {
 			return Filtri.media();
 		}
 		
+		/**
+		 * Restituisce il valore massimo gdp dei campi contenuti in una tabella oppure con l'utilizzo dei parametri, tramite Spring, 
+		 * restituisce il valore massimo gdp dei campi contenuti in una tabella maggiori di un determinato valore passato come
+		 * parametro oppure restituisce il valore massimo gdp dei campi contenuti in una tabella minori di un determinato valore passato come
+		 * parametro
+		 * @return Filtri.max
+		 */
 		@GetMapping("/massimo")
 		public JSONArray max(@RequestParam(name="operatore",defaultValue="0") String operatore, @RequestParam(name="valore",defaultValue="0") double valore) {
 			if(operatore.equals("<")|operatore.equals(">"))
@@ -46,6 +69,13 @@ public class gdpApplicationController {
 				return Filtri.max();
 			}
 		
+		/**
+		 * Restituisce il valore minimo gdp dei campi contenuti in una tabella oppure con l'utilizzo dei parametri, tramite Spring, 
+		 * restituisce il valore minimo gdp dei campi contenuti in una tabella maggiori di un determinato valore passato come
+		 * parametro oppure restituisce il valore minimo gdp dei campi contenuti in una tabella minori di un determinato valore passato come
+		 * parametro
+		 * @return Filtri.min
+		 */
 		@GetMapping("/minimo")
 		public JSONArray min(@RequestParam(name="operatore",defaultValue="0") String operatore, @RequestParam(name="valore",defaultValue="0") double valore) {
 			if(operatore.equals("<")|operatore.equals(">"))
@@ -53,12 +83,13 @@ public class gdpApplicationController {
 			else
 				return Filtri.min();
 			}
-		
+
 		@GetMapping("/variazione")
 		public JSONArray variazione() {
 		return Filtri.variazione();
 		}
 		
+	
 		@GetMapping("/variazione/{date1}/{date2}")
 		public JSONArray variazione(@PathVariable("date1") int date1,@PathVariable("date2") int date2) {
 		return Filtri.variazione(date1,date2);

@@ -10,9 +10,13 @@ import org.json.simple.JSONArray;
 import it.univpm.gdpElaborationApplication.dataclass.GDP;
 import it.univpm.gdpElaborationApplication.dataclass.Rilevazione;
 
+/**
+ * Classe Filtri
+ * @author Pistagnesi Sirocchi
+ */
 public class Filtri {
 	private static Vector<Rilevazione> tabellaIn;
-	
+
 	public static void getMetaDati() throws NoSuchMethodException, IOException {
     	Rilevazione r1=new Rilevazione();
     	r1.creaMetaDati();
@@ -28,6 +32,10 @@ public class Filtri {
 
 	}
 	
+	/**
+	 * Restituisce una tabella con i dati GDP
+	 * @return ja
+	 */
 	public static JSONArray dati() { 
 		JSONArray ja = new JSONArray();
 		String[] jsonToPrint=new String [4];
@@ -40,9 +48,12 @@ public class Filtri {
 		return ja;
 	}
 	
-	
+	/**
+	 * Restituisce una tabella con la media dei valori per ogni riga
+	 * @return ja
+	 */
 	@SuppressWarnings("unchecked")
-	public static JSONArray media() { // restituisce una tabella con la media dei valori per ogni riga
+	public static JSONArray media() { 
 		JSONArray ja = new JSONArray();
 		String[] jsonToPrint=new String [4];
 		String mediaApp;
@@ -55,8 +66,12 @@ public class Filtri {
 		return ja;
 	}
 	
+	/**
+	 * Restituisce una tabella con il massimo dei valori per ogni riga
+	 * @return ja
+	 */
 	@SuppressWarnings("unchecked")
-	public static JSONArray max() { // restituisce una tabella con la media dei valori per ogni riga
+	public static JSONArray max() { 
 		JSONArray ja = new JSONArray();
 		String[] jsonToPrint=new String [4];
 		for(int i=0;i<tabellaIn.size();i++) {
@@ -66,8 +81,13 @@ public class Filtri {
 		}
 		return ja;
 	}
+	
+	/**
+	 * Restituisce una tabella con il minimo dei valori per ogni riga
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
-	public static JSONArray min() { // restituisce una tabella con la media dei valori per ogni riga
+	public static JSONArray min() { 
 		JSONArray ja = new JSONArray();
 		String[] jsonToPrint=new String [4];
 		for(int i=0;i<tabellaIn.size();i++) {
@@ -77,8 +97,13 @@ public class Filtri {
 		}
 		return ja;
 	}
+	
+	/**
+	 * Restituisce una tabella con la variazione dei valori per ogni riga
+	 * @return ja
+	 */
 	@SuppressWarnings("unchecked")
-	public static JSONArray variazione() { // restituisce una tabella con la media dei valori per ogni riga
+	public static JSONArray variazione() { 
 		JSONArray ja = new JSONArray();
 		String[] jsonToPrint=new String [4];
 		String mediaVar;
@@ -91,8 +116,14 @@ public class Filtri {
 		return ja;
 	}
 	
+	/**
+	 * Restituisce un json con la variazione percentuale dei valori fra due date
+	 * @param data1
+	 * @param data2
+	 * @return ja
+	 */
 	@SuppressWarnings("unchecked")
-	public static JSONArray variazione(int data1, int data2) { // restituisce un json con la variazione percentuale dei valori fra due date
+	public static JSONArray variazione(int data1, int data2) { 
 		JSONArray ja = new JSONArray();
 		String[] jsonToPrint=new String [4];
 		Elaborazione el=new Elaborazione();
@@ -113,6 +144,12 @@ public class Filtri {
 		return ja;
 	}
 	
+	/**
+	 * Restituisce un json con il valore massimo di una riga
+	 * @param operator
+	 * @param value
+	 * @return ja
+	 */
 	@SuppressWarnings("unchecked")
 	public static JSONArray filterMax(String operator, double value) {
 		JSONArray ja = new JSONArray();
@@ -134,6 +171,12 @@ public class Filtri {
 		return ja;
 	}
 	
+	/**
+	 * Restituisce un json con il valore minimo di una riga
+	 * @param operator
+	 * @param value
+	 * @return ja
+	 */
 	@SuppressWarnings("unchecked")
 	public static JSONArray filterMin(String operator, double value) {
 		JSONArray ja = new JSONArray();
@@ -155,6 +198,12 @@ public class Filtri {
 		return ja;
 	}
 	
+	/**
+	 * Restituisce un json con la media di una riga
+	 * @param operator
+	 * @param value
+	 * @return ja
+	 */
 	@SuppressWarnings("unchecked")
 	public static JSONArray filterAvg(String operator, double value) {
 		JSONArray ja = new JSONArray();
@@ -179,6 +228,11 @@ public class Filtri {
 		return ja;
 	}
 
+	/**
+	 * Restituisce un json tramite ricerca per Geo
+	 * @param valore
+	 * @return ja
+	 */
 	public static JSONArray searchGeo(String valore) {
 		JSONArray ja = new JSONArray();
 		String[] jsonToPrint=new String [4];
@@ -192,6 +246,11 @@ public class Filtri {
 		return ja;
 	}
 
+	/**
+	 * Restituisce un json tramite ricerca per Oggetto
+	 * @param valore
+	 * @return ja
+	 */
 	public static JSONArray searchOggetto(String valore) {
 		JSONArray ja = new JSONArray();
 		String[] jsonToPrint=new String [4];

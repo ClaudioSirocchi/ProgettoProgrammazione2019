@@ -8,12 +8,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import it.univpm.gdpElaborationApplication.dataclass.Rilevazione;
 
+/**
+ * Classe GdpElaborationApplication contenente il main
+ * @author Pistagnesi Sirocchi
+ *
+ */
 @SpringBootApplication
 public class GdpElaborationApplication {
 
 	private static Vector<Rilevazione> tabella;
 	private static Filtri fileFilter;
-	
+
 	public static void main(String[] args) throws IOException, NoSuchMethodException{
 		SpringApplication.run(GdpElaborationApplication.class, args);
 		Parsing.selectUrl();
