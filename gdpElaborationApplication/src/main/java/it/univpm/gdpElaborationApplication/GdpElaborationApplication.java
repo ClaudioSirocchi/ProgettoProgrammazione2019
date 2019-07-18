@@ -12,6 +12,7 @@ import it.univpm.gdpElaborationApplication.dataclass.Rilevazione;
 public class GdpElaborationApplication {
 
 	private static Vector<Rilevazione> tabella;
+	private static Filtri fileFilter;
 	
 	public static void main(String[] args) throws IOException, NoSuchMethodException{
 		SpringApplication.run(GdpElaborationApplication.class, args);
@@ -19,8 +20,11 @@ public class GdpElaborationApplication {
 		tabella = Parsing.fileParsing();
 		tabella = Parsing.zeroDelete(tabella);
 		Parsing.outputCsvData(tabella);
+		System.out.println("Ho eliminato tutte le righe contenenti valori delle rilevazioni tutti nulli\n"
+				+ "Ho salvato il file elaborato outputData.csv, per visionarlo sarà sufficente importarlo in excel usando la \",\" come separatore");
 		Filtri.getMetaDati();
-		Filtri fileFilter =new Filtri(tabella);//crea il costruttore dei filtri per la tabella che passo come parametro
+		System.out.println("Ho salvato il file Json contenente i metadati del DataSet\nOra è possibile usare le funzioni messe a disposizione dal WebServer");
+		fileFilter = new Filtri(tabella);
 	}
 
 

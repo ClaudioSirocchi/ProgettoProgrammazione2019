@@ -104,6 +104,27 @@ public class Elaborazione{
     }
 	
 	@SuppressWarnings("unchecked")
+	public static JSONObject jsonSaveObj(String[] jsonData,int startyear) {
+		JSONObject obj = new JSONObject();
+		int year=startyear;
+		for(int j=0; j<jsonData.length; j++)
+	    {
+	       obj.put("Frequenza", jsonData[0]);
+	       obj.put("Geo", jsonData[1]);
+	       obj.put("Unità", jsonData[2]);
+	       obj.put("Oggetto", jsonData[3]);
+	       JSONObject objGdp = new JSONObject();
+	       for(int k=4;k<jsonData.length;k++) {
+	    	   objGdp.put(year++, jsonData[k]);
+	       }
+	       year=startyear;
+	       obj.put("Gdp", objGdp);
+	    }  
+	    return obj;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
 	public static JSONObject jsonSaveObj(String[] jsonData,String field,String fieldValue) {
 		JSONObject obj = new JSONObject();
 		for(int j=0; j<jsonData.length; j++)
@@ -114,7 +135,6 @@ public class Elaborazione{
 	       obj.put("Oggetto", jsonData[3]);
 	       obj.put(field, fieldValue);
 	    }  
-	    System.out.println(obj.toString());
 	    return obj;
 	}
 	
@@ -132,7 +152,6 @@ public class Elaborazione{
 		   obj.put("Oggetto", jsonData[3]);
 		   obj.put(field,gdpObj);
 		} 
-	    System.out.println(obj.toString());
 	    return obj;
 	}
 	

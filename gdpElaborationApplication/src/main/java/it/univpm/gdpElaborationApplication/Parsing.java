@@ -91,7 +91,7 @@ private static String []header; //usato per stampare il nuovo file csv
 	
 	public static void outputCsvData(Vector<Rilevazione> tabella) 
 	{ 
-	    File file = new File("savedfile/outputData.csv"); 
+	    File file = new File("savedfile/outputData.csv"); //utilizzando la libreria open csv
 	    try { 
 	        FileWriter outputfile = new FileWriter(file);
 	        CSVWriter writer = new CSVWriter(outputfile);

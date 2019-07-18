@@ -48,25 +48,6 @@ public interface MetaJson{
 		return appoggio;
 	}
 	
-	static String jsonMetaElaborati(Class<?> Elaborati, String...campi) throws NoSuchMethodException, IOException{
-		String gdpJson="[";
-		String appoggio="";
-		for(int i=0; i<campi.length; i++){
-			Method attribGDP = Elaborati.getMethod("get"+campi[i]);
-			metadati JsonData = attribGDP.getAnnotation(metadati.class);
-			if(i>campi.length-2) {//serve a non mettere la virgola in ultima posizione per mantenere la formattazione del json e per inserire la struttura composta GDP;
-				appoggio=gdpJson.concat("{\n\"alias\":\"" + JsonData.alias() +"\",\n\"source field\":\"" + JsonData.sourcefield() +"\",\n\"type\":\"" + JsonData.type() + "\"\n}");
-				gdpJson=appoggio;
-			}
-			else {
-				appoggio=gdpJson.concat("{\n\"alias\":\"" + JsonData.alias() +"\",\n\"source field\":\"" + JsonData.sourcefield() +"\",\n\"type\":\"" + JsonData.type() + "\"\n},");//manca l'ultima virgola
-				gdpJson=appoggio;
-			}
-		}
-		appoggio=gdpJson.concat("]");
-		return appoggio;
-	}
-	
 	@Retention(RetentionPolicy.RUNTIME)
 	@interface metadati{
 		String alias();

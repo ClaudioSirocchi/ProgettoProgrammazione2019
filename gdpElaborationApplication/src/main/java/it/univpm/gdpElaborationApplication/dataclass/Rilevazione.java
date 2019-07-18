@@ -1,4 +1,4 @@
-package it.univpm.gdpElaborationApplication.dataclass;
+ package it.univpm.gdpElaborationApplication.dataclass;
 
 import java.io.IOException;
 import java.util.Vector;
@@ -194,10 +194,10 @@ public class Rilevazione {
 		return lineString;
 	}
 	
-	public String creaMetaDati() throws NoSuchMethodException, IOException{
+	public void creaMetaDati() throws NoSuchMethodException, IOException{
 		String campi[]= {"Frequenza","Geo","Unit","Obj","DatiElab","Gdpdata"};
 		MetaJson.jsonMetaRilevazione(this.getClass(), campi);
-		return ("Ho salvato il file Json");
+		return;
 	}
 	
 	

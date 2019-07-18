@@ -26,26 +26,6 @@
 },
 {
 "alias":[{
-"alias":"avg",
-"source field":"media dei valori rilevati",
-"type":"double"
-},{
-"alias":"min",
-"source field":"minimo rilevarione riga",
-"type":"GDP"
-},{
-"alias":"max",
-"source field":"massimo rilevarione riga",
-"type":"GDP"
-},{
-"alias":"variazione",
-"source field":"variazione percentuale fra prima e ultima rilevazione",
-"type":"GDP"
-}],
-"source field":"Vettore di rilevazioni",
-"type":"Char"
-},{
-"alias":[{
 "alias":"Date",
 "source field":"Data Rilevazione",
 "type":"int"
