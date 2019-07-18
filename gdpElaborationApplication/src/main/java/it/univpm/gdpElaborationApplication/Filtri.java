@@ -1,6 +1,5 @@
 package it.univpm.gdpElaborationApplication;
 
-import java.io.File;
 import java.io.IOException; 
 import java.util.Vector;
 
@@ -36,6 +35,7 @@ public class Filtri {
 	 * Restituisce una tabella con i dati GDP
 	 * @return ja
 	 */
+	@SuppressWarnings("unchecked")
 	public static JSONArray dati() { 
 		JSONArray ja = new JSONArray();
 		String[] jsonToPrint=new String [4];
@@ -214,14 +214,38 @@ public class Filtri {
 			jsonToPrint=riga.setRigaAsString(riga, 4);
 			switch (operator) {
 			case "<":
+				mediaApp=Double.toString(riga.getDatiElab().getAvg());
 				if(riga.getDatiElab().getAvg()<value)
-					mediaApp=Double.toString(riga.getDatiElab().getAvg());
 					ja.add(Elaborazione.jsonSaveObj(jsonToPrint,"Media",mediaApp));	
 				break;
 			case ">":
+				mediaApp=Double.toString(riga.getDatiElab().getAvg());
 				if(riga.getDatiElab().getAvg()>value)
-					mediaApp=Double.toString(riga.getDatiElab().getAvg());
-					ja.add(Elaborazione.jsonSaveObj(jsonToPrint,"Media",mediaApp));		
+					ja.add(Elaborazione.jsonSaveObj(jsonToPrint,"Media",mediaApp));	
+				break;
+			}
+		}
+		return ja;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static JSONArray filterVar(String operator, double value) {
+		JSONArray ja = new JSONArray();
+		String[] jsonToPrint=new String [4];
+		String mediaVar="";
+		for(int i=0;i<tabellaIn.size();i++) {
+			Rilevazione riga=tabellaIn.get(i);
+			jsonToPrint=riga.setRigaAsString(riga, 4);
+			switch (operator) {
+			case "<":
+				mediaVar=Double.toString(riga.getDatiElab().getVariazione());
+				if(riga.getDatiElab().getVariazione()<value)
+					ja.add(Elaborazione.jsonSaveObj(jsonToPrint,"Variazione",mediaVar));	
+				break;
+			case ">":
+				mediaVar=Double.toString(riga.getDatiElab().getVariazione());
+				if(riga.getDatiElab().getVariazione()>value)
+					ja.add(Elaborazione.jsonSaveObj(jsonToPrint,"Variazione",mediaVar));	
 				break;
 			}
 		}
@@ -233,6 +257,7 @@ public class Filtri {
 	 * @param valore
 	 * @return ja
 	 */
+	@SuppressWarnings("unchecked")
 	public static JSONArray searchGeo(String valore) {
 		JSONArray ja = new JSONArray();
 		String[] jsonToPrint=new String [4];
@@ -251,6 +276,7 @@ public class Filtri {
 	 * @param valore
 	 * @return ja
 	 */
+	@SuppressWarnings("unchecked")
 	public static JSONArray searchOggetto(String valore) {
 		JSONArray ja = new JSONArray();
 		String[] jsonToPrint=new String [4];
@@ -261,6 +287,39 @@ public class Filtri {
 			if(jsonToPrint[3].equals(valore))
 				ja.add(Elaborazione.jsonSaveObj(jsonToPrint,startyear));
 		}
+		return ja;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static JSONArray variazione(int data1, int data2,String operator, double value) { // restituisce un json con la variazione percentuale dei valori fra due date
+		JSONArray ja = new JSONArray();
+		String[] jsonToPrint=new String [4];
+		Elaborazione el=new Elaborazione();
+		GDP elem1= new GDP();
+		GDP elem2= new GDP();
+		String mediaVar="";
+		for(int i=0;i<tabellaIn.size();i++) {
+			Rilevazione riga=tabellaIn.get(i);
+			jsonToPrint=riga.setRigaAsString(riga, 4);
+		for(int k=0;k<riga.getGdpdata().size();k++) {// serve a selezionare i GDP con le due date selezionate
+			if(riga.getGdpdata().get(k).getDate()==data1)
+				elem1=riga.getGdpdata().get(k);
+			if(riga.getGdpdata().get(k).getDate()==data2)
+				elem2=riga.getGdpdata().get(k);
+		}
+			double elaborazione= el.Variazione(elem1, elem2);
+			switch (operator) {
+			case "<":
+				mediaVar=Double.toString(elaborazione);
+				if(elaborazione<value)
+					ja.add(Elaborazione.jsonSaveObj(jsonToPrint,"Variazione",mediaVar));	
+				break;
+			case ">":
+				mediaVar=Double.toString(elaborazione);
+				if(elaborazione>value)
+					ja.add(Elaborazione.jsonSaveObj(jsonToPrint,"Variazione",mediaVar));	
+				break;
+			}		}
 		return ja;
 	}
 	
