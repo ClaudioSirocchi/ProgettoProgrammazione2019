@@ -89,7 +89,7 @@ public class Elaborazione{
 	public double Variazione(GDP dateI, GDP dateF) {
 		double somma = dateI.getValue()+dateF.getValue();
 		double percentuale;  													//controllare la divisione per zero
-	    variazione =((dateF.getValue()-dateI.getValue())/dateI.getValue());
+	    variazione = dateF.getValue()-dateI.getValue();
 	    percentuale = (variazione*100)/somma;
 	    return percentuale;
 	}
