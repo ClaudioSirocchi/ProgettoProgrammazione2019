@@ -80,7 +80,15 @@ public class gdpApplicationController {
 			else
 				return Filtri.min();
 			}
-
+		
+		/**
+		 * Restituisce la variazione gdp tra primo e ultimo anno dei campi contenuti in una tabella 
+		 * oppure con l'utilizzo dei parametri, tramite Spring, 
+		 * restituisce la variazione gdp tra primo e ultimo anno dei campi contenuti in una tabella maggiori di un determinato valore passato come
+		 * parametro oppure restituisce la variazione gdp tra primo e ultimo anno dei campi contenuti in una tabella minori di un determinato valore passato come
+		 * parametro
+		 * @return Filtri.variazione
+		 */
 		@GetMapping("/variazione")
 		public JSONArray variazione(@RequestParam(name="operatore",defaultValue="0") String operatore, @RequestParam(name="valore",defaultValue="0") double valore) {
 			if(operatore.equals("<")|operatore.equals(">"))
@@ -89,7 +97,14 @@ public class gdpApplicationController {
 				return Filtri.variazione();
 		}
 		
-	
+		/**
+		 * Restituisce la variazione gdp tra due determinati anni dei campi contenuti in una tabella 
+		 * oppure con l'utilizzo dei parametri, tramite Spring, 
+		 * restituisce la variazione gdp tra due determinati anni dei campi contenuti in una tabella maggiori di un determinato valore passato come
+		 * parametro oppure restituisce la variazione gdp tra due determinati anni dei campi contenuti in una tabella minori di un determinato valore passato come
+		 * parametro
+		 * @return Filtri.variazione
+		 */
 		@GetMapping("/variazione/{date1}/{date2}")
 		public JSONArray variazione(@PathVariable("date1") int data1,@PathVariable("date2") int data2,@RequestParam(name="operatore",defaultValue="0") String operatore, @RequestParam(name="valore",defaultValue="0") double valore) {
 			if (operatore.equals("<")|operatore.equals(">")){

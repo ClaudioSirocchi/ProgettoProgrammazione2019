@@ -7,8 +7,20 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.Method;
 
+/**
+ * Interfaccia MetaJson
+ * @author Pistagnesi Sirocchi
+ *
+ */
 public interface MetaJson{
 
+	/**
+	 * Restituisce i metadati della classe rilevazione
+	 * @param rilevazione classe da cui reperire i metadati
+	 * @param campiRilev campi dei quali ottenere i metadati
+	 * @throws NoSuchMethodException
+	 * @throws IOException
+	 */
 	static void jsonMetaRilevazione(Class<?> rilevazione, String...campiRilev) throws NoSuchMethodException, IOException{
 		BufferedWriter JsonFile = new BufferedWriter(new FileWriter("savedfile/metadati.json"));
 		JsonFile.write("[\n");
@@ -29,6 +41,14 @@ public interface MetaJson{
 	
 }
 	
+	/**
+	 * Restituisce i metadati della classe gdp
+	 * @param GDP classe da cui reperire i metadati
+	 * @param campi campi dei quali ottenere i metadati
+	 * @return appoggio stringa contenente i metadati di gdp
+	 * @throws NoSuchMethodException
+	 * @throws IOException
+	 */
 	static String jsonMetaGDP(Class<?> GDP, String...campi) throws NoSuchMethodException, IOException{
 		String gdpJson="[";
 		String appoggio="";
