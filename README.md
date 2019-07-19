@@ -12,20 +12,20 @@ Si è deciso di offrire questa possibilità in quando trattando il data-set una 
 
 Dopo aver indicato al main come si vuole procedere quest'ultimo provvedere a effettuareil download del file,salvarlo("savedfile/gdp.csv") e successivamente effettuare il parsing del data-set scaricato e memorizzarlo all'interno di una variabile di tipo Vector<Rilevazione> tabella, cioè un vettore in cui ogni elemento corrisponde ad una riga del data-set, analizzando il file scaricando e procedendo alla rimozione di tutte le righe che contengo rilevazioni nulle per ogni data(Parsing.selectUrl(); tabella = Parsing.fileParsing();tabella = Parsing.zeroDelete(tabella);).
   
-Il file elaborato(cioè senza righe nulle) oltre ad essere memorizzato in una variabile verra salvato in formato csv ("savedfile/outputData.csv") ma con i separatori rielaborati in modo tale che sarà possibile visualizzarlo importandolo in excel (usando la virgola come separatore). Successivamente il main richiamerà la funzione Filtri.getMetaDati(); e salvera un file ("savedfile/metadati.json") che conterrà i metadati del data-set in formato json.
+Il file elaborato(cioè senza righe nulle) oltre ad essere memorizzato in una variabile verrà salvato in formato csv ("savedfile/outputData.csv") ma con i separatori rielaborati in modo tale che sarà possibile visualizzarlo importandolo in excel (usando la virgola come separatore). Successivamente il main richiamerà la funzione Filtri.getMetaDati(); e salverà un file ("savedfile/metadati.json") che conterrà i metadati del data-set in formato json.
 
-Effettuate queste operazioni il main crea un nuovo oggetto di tipo Filtri. Da qui in poi si potra interagire direttamente con il software utilizzando direttamente i comandi GET,sfruttando software quali ad esempio Postman di cui si riportano alcuni esempi:
+Effettuate queste operazioni il main crea un nuovo oggetto di tipo Filtri. Da qui in poi si potrà interagire direttamente con il software utilizzando direttamente i comandi GET,sfruttando software quali ad esempio Postman di cui si riportano alcuni esempi:
 
 #### Comandi GET:
 *!Attenzione! potrebbe essere necessario copiare e incollare manualmente la parte che specifica i filtri
 
 - (http://localhost:8080/dati) stampa tutte le righe
 
--* (http://localhost:8080/media?operatore=<&valore=0.04) stampa tutte le righe che hanno la media inferiore a 0.04
+- * (http://localhost:8080/media?operatore=<&valore=0.04) stampa tutte le righe che hanno la media inferiore a 0.04
 
 - (http://localhost:8080/media) stampa tutte le righe e la loro media
 
--* (http://localhost:8080/media?operatore=>&valore=0.04) stampa tutte le righe che hanno la media superiore a 0.04
+- * (http://localhost:8080/media?operatore=>&valore=0.04) stampa tutte le righe che hanno la media superiore a 0.04
 
 - (http://localhost:8080/dati?campo=geo&valore=AT) stampa tutte le righe che il cui valore geo corrisponde a AT
 
@@ -33,19 +33,28 @@ Effettuate queste operazioni il main crea un nuovo oggetto di tipo Filtri. Da qu
 
 - (http://localhost:8080/variazione) stampa tutte le righe che contengono una variazione fra la prima data e l’ultima data dell’oggetto gdp 70%
 
--* (http://localhost:8080/variazione?operatore=<&valore=70) stampa tutte le righe che contengono una variazione fra la prima data e l’ultima data dell’oggetto gdp 70%
+- * (http://localhost:8080/variazione?operatore=<&valore=70) stampa tutte le righe che contengono una variazione fra la prima data e l’ultima data dell’oggetto gdp 70%
 
--* (http://localhost:8080/variazione/2010/2012?operatore=>&valore=20) stampa tutte le righe che contengono una variazione fra la data 2010 e la data 2012 maggiore del 20%
+- * (http://localhost:8080/variazione/2010/2012?operatore=>&valore=20) stampa tutte le righe che contengono una variazione fra la data 2010 e la data 2012 maggiore del 20%
 
 - (http://localhost:8080/variazione/2011/2013) stampa tutte le righe che contengono una variazione fra la data 2010 e la data 2012
 
 ## Diagrammi 
 
 ### UML Struttura
-Nel seguente uml è possibile visualizzare come è organizzata la struttura del programma
+Nel seguente uml è possibile visualizzare come è organizzata la struttura del programma.
 ![Alt text](https://github.com/ClaudioSirocchi/ProgettoProgrammazione2019/blob/master/gdpElaborationApplication/diagrammi/PackageApplication.jpg?raw=true)
 
 ### UML Data-Set
-Nel seguente uml è possibile visionare la gestione delle classi usate per gestire i dati ottenuti dal dataset
+Nel seguente uml è possibile visionare la gestione delle classi usate per gestire i dati ottenuti dal dataset.
 ![Alt text](https://github.com/ClaudioSirocchi/ProgettoProgrammazione2019/blob/master/gdpElaborationApplication/diagrammi/DataSetjpg.jpg?raw=true)
 
+### UML Use Case
+Nel seguente uml è possibile visionare i servizi offerti dal programma e come esso si comporta.
+![Alt text]
+(https://github.com/ClaudioSirocchi/ProgettoProgrammazione2019/blob/master/gdpElaborationApplication/diagrammi/UseCase.jpg)
+
+### UML Sequence Diagram
+Nel seguente uml è possibile visionare la rappresentazione di come interagiscono i vari oggetti nell’arco temporale.
+![Alt text]
+(https://github.com/ClaudioSirocchi/ProgettoProgrammazione2019/blob/master/gdpElaborationApplication/diagrammi/SequenceDiagram.JPG)
