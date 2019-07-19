@@ -21,11 +21,11 @@ Effettuate queste operazioni il main crea un nuovo oggetto di tipo Filtri. Da qu
 
 - (http://localhost:8080/dati) stampa tutte le righe
 
-- * (http://localhost:8080/media?operatore=<&valore=0.04) stampa tutte le righe che hanno la media inferiore a 0.04
+- (http://localhost:8080/media?operatore=<&valore=0.04) stampa tutte le righe che hanno la media inferiore a 0.04  *
 
 - (http://localhost:8080/media) stampa tutte le righe e la loro media
 
-- * (http://localhost:8080/media?operatore=>&valore=0.04) stampa tutte le righe che hanno la media superiore a 0.04
+- (http://localhost:8080/media?operatore=>&valore=0.04) stampa tutte le righe che hanno la media superiore a 0.04  *
 
 - (http://localhost:8080/dati?campo=geo&valore=AT) stampa tutte le righe che il cui valore geo corrisponde a AT
 
@@ -33,9 +33,9 @@ Effettuate queste operazioni il main crea un nuovo oggetto di tipo Filtri. Da qu
 
 - (http://localhost:8080/variazione) stampa tutte le righe che contengono una variazione fra la prima data e l’ultima data dell’oggetto gdp 70%
 
-- * (http://localhost:8080/variazione?operatore=<&valore=70) stampa tutte le righe che contengono una variazione fra la prima data e l’ultima data dell’oggetto gdp 70%
+- (http://localhost:8080/variazione?operatore=<&valore=70) stampa tutte le righe che contengono una variazione fra la prima data e l’ultima data dell’oggetto gdp 70%   *
 
-- * (http://localhost:8080/variazione/2010/2012?operatore=>&valore=20) stampa tutte le righe che contengono una variazione fra la data 2010 e la data 2012 maggiore del 20%
+- (http://localhost:8080/variazione/2010/2012?operatore=>&valore=20) stampa tutte le righe che contengono una variazione fra la data 2010 e la data 2012 maggiore del 20%  *
 
 - (http://localhost:8080/variazione/2011/2013) stampa tutte le righe che contengono una variazione fra la data 2010 e la data 2012
 
@@ -52,9 +52,9 @@ Nel seguente uml è possibile visionare la gestione delle classi usate per gesti
 ### UML Use Case
 Nel seguente uml è possibile visionare i servizi offerti dal programma e come esso si comporta.
 ![Alt text]
-(https://github.com/ClaudioSirocchi/ProgettoProgrammazione2019/blob/master/gdpElaborationApplication/diagrammi/UseCase.jpg)
+(https://github.com/ClaudioSirocchi/ProgettoProgrammazione2019/blob/master/gdpElaborationApplication/diagrammi/UseCase.jpg?raw=true)
 
 ### UML Sequence Diagram
 Nel seguente uml è possibile visionare la rappresentazione di come interagiscono i vari oggetti nell’arco temporale.
 ![Alt text]
-(https://github.com/ClaudioSirocchi/ProgettoProgrammazione2019/blob/master/gdpElaborationApplication/diagrammi/SequenceDiagram.JPG)
+(https://github.com/ClaudioSirocchi/ProgettoProgrammazione2019/blob/master/gdpElaborationApplication/diagrammi/SequenceDiagram.JPG?raw=true)
