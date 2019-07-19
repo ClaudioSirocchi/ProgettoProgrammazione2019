@@ -51,10 +51,8 @@ Nel seguente uml è possibile visionare la gestione delle classi usate per gesti
 
 ### UML Use Case
 Nel seguente uml è possibile visionare i servizi offerti dal programma e come esso si comporta.
-![Alt text]
-(https://github.com/ClaudioSirocchi/ProgettoProgrammazione2019/blob/master/gdpElaborationApplication/diagrammi/UseCase.jpg?raw=true)
+![Alt text](https://github.com/ClaudioSirocchi/ProgettoProgrammazione2019/blob/master/gdpElaborationApplication/diagrammi/UseCase.jpg?raw=true)
 
 ### UML Sequence Diagram
 Nel seguente uml è possibile visionare la rappresentazione di come interagiscono i vari oggetti nell’arco temporale.
-![Alt text]
-(https://github.com/ClaudioSirocchi/ProgettoProgrammazione2019/blob/master/gdpElaborationApplication/diagrammi/SequenceDiagram.JPG?raw=true)
+![Alt text](https://github.com/ClaudioSirocchi/ProgettoProgrammazione2019/blob/master/gdpElaborationApplication/diagrammi/SequenceDiagram.JPG?raw=true)
