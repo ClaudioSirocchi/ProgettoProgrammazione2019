@@ -27,7 +27,7 @@ public class GDP {
 	
 	 /**
      * Imposta la data del GDP
-     * @param date
+     * @param date data da impostare
      */
 	public void setDate(int date) {
 		this.date = date;

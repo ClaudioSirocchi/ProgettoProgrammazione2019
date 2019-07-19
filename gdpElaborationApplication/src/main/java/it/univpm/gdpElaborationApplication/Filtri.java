@@ -33,7 +33,7 @@ public class Filtri {
 	
 	/**
 	 * Restituisce una tabella con i dati GDP
-	 * @return ja
+	 * @return Json con tutti i dati
 	 */
 	@SuppressWarnings("unchecked")
 	public static JSONArray dati() { 
@@ -50,7 +50,7 @@ public class Filtri {
 	
 	/**
 	 * Restituisce una tabella con la media dei valori per ogni riga
-	 * @return ja
+	 * @return Json con campo media dei valori della riga
 	 */
 	@SuppressWarnings("unchecked")
 	public static JSONArray media() { 
@@ -68,7 +68,7 @@ public class Filtri {
 	
 	/**
 	 * Restituisce una tabella con il massimo dei valori per ogni riga
-	 * @return ja
+	 * @return Json con campo dei massimi
 	 */
 	@SuppressWarnings("unchecked")
 	public static JSONArray max() { 
@@ -84,7 +84,7 @@ public class Filtri {
 	
 	/**
 	 * Restituisce una tabella con il minimo dei valori per ogni riga
-	 * @return
+	 * @return Json con campo dei minimi
 	 */
 	@SuppressWarnings("unchecked")
 	public static JSONArray min() { 
@@ -99,8 +99,8 @@ public class Filtri {
 	}
 	
 	/**
-	 * Restituisce una tabella con la variazione dei valori per ogni riga
-	 * @return ja
+	 * Restituisce una tabella con la variazione dei valori per ogni riga fra data iniziale e data finale
+	 * @return Json con variazione fra data iniziale e data finale
 	 */
 	@SuppressWarnings("unchecked")
 	public static JSONArray variazione() { 
@@ -117,10 +117,10 @@ public class Filtri {
 	}
 	
 	/**
-	 * Restituisce un json con la variazione percentuale dei valori fra due date
-	 * @param data1
-	 * @param data2
-	 * @return ja
+	 * Restituisce un json con la variazione percentuale dei valori fra due date selezionate 
+	 * @param data1 prima data
+	 * @param data2 seconda data
+	 * @return Json con variazione fra prima e seconda data 
 	 */
 	@SuppressWarnings("unchecked")
 	public static JSONArray variazione(int data1, int data2) { 
@@ -144,65 +144,14 @@ public class Filtri {
 		return ja;
 	}
 	
-	/**
-	 * Restituisce un json con il valore massimo di una riga
-	 * @param operator
-	 * @param value
-	 * @return ja
-	 */
-	@SuppressWarnings("unchecked")
-	public static JSONArray filterMax(String operator, double value) {
-		JSONArray ja = new JSONArray();
-		String[] jsonToPrint=new String [4];
-		for(int i=0;i<tabellaIn.size();i++) {
-			Rilevazione riga=tabellaIn.get(i);
-			jsonToPrint=riga.setRigaAsString(riga, 4);
-			switch (operator) {
-			case "<":
-				if(riga.getDatiElab().getMax().getValue()<value)
-				ja.add(Elaborazione.jsonSaveObj(jsonToPrint,riga.getDatiElab().getMin(),"Massimo"));	
-				break;
-			case ">":
-				if(riga.getDatiElab().getMax().getValue()>value)
-					ja.add(Elaborazione.jsonSaveObj(jsonToPrint,riga.getDatiElab().getMin(),"Massimo"));	
-				break;
-			}
-		}
-		return ja;
-	}
 	
-	/**
-	 * Restituisce un json con il valore minimo di una riga
-	 * @param operator
-	 * @param value
-	 * @return ja
-	 */
-	@SuppressWarnings("unchecked")
-	public static JSONArray filterMin(String operator, double value) {
-		JSONArray ja = new JSONArray();
-		String[] jsonToPrint=new String [4];
-		for(int i=0;i<tabellaIn.size();i++) {
-			Rilevazione riga=tabellaIn.get(i);
-			jsonToPrint=riga.setRigaAsString(riga, 4);
-			switch (operator) {
-			case "<":
-				if(riga.getDatiElab().getMin().getValue()<value)
-				ja.add(Elaborazione.jsonSaveObj(jsonToPrint,riga.getDatiElab().getMin(),"Minimo"));	
-				break;
-			case ">":
-				if(riga.getDatiElab().getMin().getValue()>value)
-					ja.add(Elaborazione.jsonSaveObj(jsonToPrint,riga.getDatiElab().getMin(),"Minimo"));	
-				break;
-			}
-		}
-		return ja;
-	}
-	
-	/**
-	 * Restituisce un json con la media di una riga
-	 * @param operator
-	 * @param value
-	 * @return ja
+	/** 
+	 * Restituisce il valore medio gdp dei campi contenuti in una tabella maggiori di un determinato valore passato come
+	 * parametro oppure restituisce il valore medio gdp dei campi contenuti in una tabella minori di un determinato valore passato come
+	 * parametro
+	 * @param operator operatore di controllo
+	 * @param value  valore di controllo
+	 * @return Json con campo media della riga che rispetta le condizioni
 	 */
 	@SuppressWarnings("unchecked")
 	public static JSONArray filterAvg(String operator, double value) {
@@ -228,24 +177,37 @@ public class Filtri {
 		return ja;
 	}
 	
+	/**
+	 * Restituisce la variazione gdp tra data iniziale e data finale dei campi 
+	 * contenuti in una tabella maggiori di un determinato valore passato 
+	 * come parametro oppure restituisce la variazione gdp tra primo e ultimo anno
+	 * dei campi contenuti in una tabella minori 
+	 * di un determinato valore passato come parametro
+	 * @param operator operatore di controllo
+	 * @param value  valore di controllo
+	 * @return ja Json con campo variazione, fra due date, della riga che 
+	 * rispetta le condizioni
+	 * @return Json con variazione fra data iniziale e data finale che rispetta le condizioni 
+	 */
+	
 	@SuppressWarnings("unchecked")
 	public static JSONArray filterVar(String operator, double value) {
 		JSONArray ja = new JSONArray();
 		String[] jsonToPrint=new String [4];
-		String mediaVar="";
+		String var="";
 		for(int i=0;i<tabellaIn.size();i++) {
 			Rilevazione riga=tabellaIn.get(i);
 			jsonToPrint=riga.setRigaAsString(riga, 4);
 			switch (operator) {
 			case "<":
-				mediaVar=Double.toString(riga.getDatiElab().getVariazione());
+				var=Double.toString(riga.getDatiElab().getVariazione());
 				if(riga.getDatiElab().getVariazione()<value)
-					ja.add(Elaborazione.jsonSaveObj(jsonToPrint,"Variazione",mediaVar));	
+					ja.add(Elaborazione.jsonSaveObj(jsonToPrint,"Variazione",var));	
 				break;
 			case ">":
-				mediaVar=Double.toString(riga.getDatiElab().getVariazione());
+				var=Double.toString(riga.getDatiElab().getVariazione());
 				if(riga.getDatiElab().getVariazione()>value)
-					ja.add(Elaborazione.jsonSaveObj(jsonToPrint,"Variazione",mediaVar));	
+					ja.add(Elaborazione.jsonSaveObj(jsonToPrint,"Variazione",var));	
 				break;
 			}
 		}
@@ -253,9 +215,10 @@ public class Filtri {
 	}
 
 	/**
-	 * Restituisce un json tramite ricerca per Geo
-	 * @param valore
-	 * @return ja
+	 * Restituisce un json selezionando solo i campi che contengono
+	 * un determinato valore per l'attributo geo
+	 * @param valore valore di selezione geo
+	 * @return Json che presenta solo elementi che contengono come geo il parametro valore
 	 */
 	@SuppressWarnings("unchecked")
 	public static JSONArray searchGeo(String valore) {
@@ -272,9 +235,10 @@ public class Filtri {
 	}
 
 	/**
-	 * Restituisce un json tramite ricerca per Oggetto
-	 * @param valore
-	 * @return ja
+	 * Restituisce un json selezionando solo i campi che contengono
+	 * un determinato valore per l'attributo Oggetto
+	 * @param valore valore di selezione geo
+	 * @return Json che presenta solo elementi che contengono come geo il parametro valore
 	 */
 	@SuppressWarnings("unchecked")
 	public static JSONArray searchOggetto(String valore) {
@@ -289,9 +253,20 @@ public class Filtri {
 		}
 		return ja;
 	}
-	
+	/**
+	 * Restituisce la variazione gdp tra due anni selezionati sui campi 
+	 * contenuti in una tabella maggiori di un determinato valore passato 
+	 * come parametro oppure restituisce la variazione gdp tra due anni 
+	 * selezionati sui campi contenuti in una tabella minori 
+	 * di un determinato valore passato come parametro
+	 * @param operator operatore di controllo
+	 * @param value  valore di controllo
+	 * @return ja Json con campo variazione, fra due date, della riga che 
+	 * rispetta le condizioni
+	 * @return Json con variazione fra prima e seconda data che rispetta le condizioni 
+	 */
 	@SuppressWarnings("unchecked")
-	public static JSONArray variazione(int data1, int data2,String operator, double value) { // restituisce un json con la variazione percentuale dei valori fra due date
+	public static JSONArray variazione(int data1, int data2,String operator, double value) { 
 		JSONArray ja = new JSONArray();
 		String[] jsonToPrint=new String [4];
 		Elaborazione el=new Elaborazione();

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"it.univpm.gdpElaborationApplication"},{"l":"it.univpm.gdpElaborationApplication.controller"},{"l":"it.univpm.gdpElaborationApplication.dataclass"}]

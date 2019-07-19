@@ -16,9 +16,9 @@ import it.univpm.gdpElaborationApplication.Filtri;
 public class gdpApplicationController {
 		
 		/**
-		 * Restituisce i dati contenuti in una tabella oppure con l'utilizzo dei parametri, tramite Spring, restituisce i campi della tabella
+		 * Restituisce con il metodo get di spring un json che contiene i dati contenuti in una tabella oppure con l'utilizzo dei parametri, tramite Spring, restituisce i campi della tabella
 		 * che contengono un oggetto indicato oppure i campi della tabella che contengono un geo indicato
-		 * @return search
+		 * @return json contenete i campi che rispettano la ricerca effettuata
 		 */
 		@GetMapping("/dati")
 		public JSONArray dati(@RequestParam(name="campo", defaultValue="0") String campo,@RequestParam(name="valore", defaultValue="0") String valore) {
@@ -37,10 +37,13 @@ public class gdpApplicationController {
 		}
 		
 		/**
-		 * Restituisce il valore medio gdp dei campi contenuti in una tabella oppure con l'utilizzo dei parametri, tramite Spring, 
-		 * restituisce il valore medio gdp dei campi contenuti in una tabella maggiori di un determinato valore passato come
-		 * parametro oppure restituisce il valore medio gdp dei campi contenuti in una tabella minori di un determinato valore passato come
-		 * parametro
+		 * Restituisce con il metodo get di spring un json che contiene il valore 
+		 * medio gdp dei campi contenuti in una tabella oppure con l'utilizzo 
+		 * dei parametri, tramite Spring, restituisce il valore medio gdp 
+		 * dei campi contenuti in una tabella maggiori di un determinato 
+		 * valore passato come parametro oppure restituisce il valore medio
+		 * gdp dei campi contenuti in una tabella minori di un determinato
+		 * valore passato come parametro
 		 * @return Filtri.media
 		 */
 		@GetMapping("/media")
@@ -52,41 +55,34 @@ public class gdpApplicationController {
 		}
 		
 		/**
-		 * Restituisce il valore massimo gdp dei campi contenuti in una tabella oppure con l'utilizzo dei parametri, tramite Spring, 
-		 * restituisce il valore massimo gdp dei campi contenuti in una tabella maggiori di un determinato valore passato come
-		 * parametro oppure restituisce il valore massimo gdp dei campi contenuti in una tabella minori di un determinato valore passato come
-		 * parametro
+		 * Restituisce con il metodo get di spring un json che contiene il valore 
+		 * massimo gdp dei campi contenuti in una tabella
 		 * @return Filtri.max
 		 */
 		@GetMapping("/massimo")
-		public JSONArray max(@RequestParam(name="operatore",defaultValue="0") String operatore, @RequestParam(name="valore",defaultValue="0") double valore) {
-			if(operatore.equals("<")|operatore.equals(">"))
-				return Filtri.filterMax(operatore,valore);
-			else
+		public JSONArray max() {
 				return Filtri.max();
 			}
 		
 		/**
-		 * Restituisce il valore minimo gdp dei campi contenuti in una tabella oppure con l'utilizzo dei parametri, tramite Spring, 
-		 * restituisce il valore minimo gdp dei campi contenuti in una tabella maggiori di un determinato valore passato come
-		 * parametro oppure restituisce il valore minimo gdp dei campi contenuti in una tabella minori di un determinato valore passato come
-		 * parametro
+		 * Restituisce con il metodo get di spring un json che contiene il 
+		 * valore minimo gdp dei campi contenuti in una tabella 
 		 * @return Filtri.min
 		 */
 		@GetMapping("/minimo")
-		public JSONArray min(@RequestParam(name="operatore",defaultValue="0") String operatore, @RequestParam(name="valore",defaultValue="0") double valore) {
-			if(operatore.equals("<")|operatore.equals(">"))
-				return Filtri.filterMin(operatore,valore);
-			else
+		public JSONArray min() {
 				return Filtri.min();
 			}
 		
 		/**
-		 * Restituisce la variazione gdp tra primo e ultimo anno dei campi contenuti in una tabella 
-		 * oppure con l'utilizzo dei parametri, tramite Spring, 
-		 * restituisce la variazione gdp tra primo e ultimo anno dei campi contenuti in una tabella maggiori di un determinato valore passato come
-		 * parametro oppure restituisce la variazione gdp tra primo e ultimo anno dei campi contenuti in una tabella minori di un determinato valore passato come
-		 * parametro
+		 * Restituisce con il metodo get di spring un json che contiene 
+		 * la variazione gdp tra primo e ultimo anno dei campi 
+		 * contenuti in una tabella oppure con l'utilizzo dei parametri restituisce 
+		 * la variazione gdp tra primo e ultimo anno dei campi contenuti 
+		 * in una tabella maggiori di un determinato valore passato come
+		 * parametro oppure restituisce la variazione gdp tra primo e 
+		 * ultimo anno dei campi contenuti in una tabella minori di un 
+		 * determinato valore passato come parametro
 		 * @return Filtri.variazione
 		 */
 		@GetMapping("/variazione")
@@ -98,11 +94,14 @@ public class gdpApplicationController {
 		}
 		
 		/**
-		 * Restituisce la variazione gdp tra due determinati anni dei campi contenuti in una tabella 
-		 * oppure con l'utilizzo dei parametri, tramite Spring, 
-		 * restituisce la variazione gdp tra due determinati anni dei campi contenuti in una tabella maggiori di un determinato valore passato come
-		 * parametro oppure restituisce la variazione gdp tra due determinati anni dei campi contenuti in una tabella minori di un determinato valore passato come
-		 * parametro
+		 * Restituisce con il metodo get di spring un json che contiene 
+		 * la variazione gdp tra due determinati anni dei campi 
+		 * contenuti in una tabella oppure con l'utilizzo dei parametri, 
+		 * restituisce la variazione gdp tra due determinati anni dei campi 
+		 * contenuti in una tabella maggiori di un determinato valore passato 
+		 * come parametro oppure restituisce la variazione gdp tra due
+		 * determinati anni dei campi contenuti in una tabella minori 
+		 * di un determinato valore passato come parametro
 		 * @return Filtri.variazione
 		 */
 		@GetMapping("/variazione/{date1}/{date2}")

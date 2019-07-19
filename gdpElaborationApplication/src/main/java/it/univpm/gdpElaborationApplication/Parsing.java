@@ -25,7 +25,7 @@ private static String []header; //usato per stampare il nuovo file csv
 
 	/**
 	 * Seleziona l'Url di default o quello inserito
-	 * @throws IOException
+	 * @throws IOException gestisce gli errori del flusso di lettura dell'url
 	 */
 	public static void selectUrl() throws IOException {
 		Scanner input = new Scanner(System.in);
@@ -92,8 +92,8 @@ private static String []header; //usato per stampare il nuovo file csv
 	
 	/**
 	 * Rimuove le righe contenenti solo zero
-	 * @param tabella
-	 * @return tabella
+	 * @param tabella tabella da cui devo eliminare le righe nulle
+	 * @return tabella tabella con le righe nulle eliminate 
 	 */
 	public static Vector<Rilevazione> zeroDelete(Vector<Rilevazione> tabella) {
 		for(int i=0;i<tabella.size();i++) {
@@ -114,8 +114,8 @@ private static String []header; //usato per stampare il nuovo file csv
 	}
 	
 	/**
-	 * Salva il file csv
-	 * @param tabella
+	 * Salva il file csv nella posizione "savedfile/outputData.csv"
+	 * @param tabella tabella da cui prendere i dati da salvare
 	 */
 	public static void outputCsvData(Vector<Rilevazione> tabella) 
 	{ 

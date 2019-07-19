@@ -40,7 +40,7 @@ public class Rilevazione {
 
 	/**
 	 * Fornisce la frequenza del GDP
-	 * @return frequenza
+	 * @return frequenza frequenza dell'oggetto Rilevazione
 	 */
 	public char getFrequenza() {
 		return frequenza;
@@ -48,7 +48,7 @@ public class Rilevazione {
 	
 	/**
      * Imposta la frequenza del GDP
-     * @param frequenza
+     * @param frequenza frequenza da impostare
      */
 	public void setFrequenza(char frequenza) {
 		this.frequenza=frequenza;
@@ -59,7 +59,7 @@ public class Rilevazione {
 
 	/**
 	 * Fornisce la città del GDP
-	 * @return geo
+	 * @return geo geo dell'oggetto Rilevazione
 	 */
 
 	public String getGeo() {
@@ -68,7 +68,7 @@ public class Rilevazione {
 	
 	/**
      * Imposta la città del GDP
-     * @param geo
+     * @param geo geo da impostare
      */
 	public void setGeo(String geo) {
 		this.geo = geo;
@@ -78,7 +78,7 @@ public class Rilevazione {
 
 	/**
 	 * Fornisce il tipo di dato
-	 * @return unit
+	 * @return unit unità dell'oggetto Rilevazione
 	 */
 
 
@@ -88,7 +88,7 @@ public class Rilevazione {
 	
 	/**
      * Imposta il tipo di dato
-     * @param unit
+     * @param unit unità da impostare
      */
 	public void setUnit(String unit) {
 		this.unit = unit;
@@ -98,7 +98,7 @@ public class Rilevazione {
 
 	/**
 	 * Fornisce l'obiettivo
-	 * @return obj
+	 * @return obj oggetto dell'oggetto Rilevazione
 	 */
 
 	public String getObj() {
@@ -107,7 +107,7 @@ public class Rilevazione {
 	
 	/**
      * Imposta l'obiettivo
-     * @param obj
+     * @param obj obbiettivo da impostare
      */
 	public void setObj(String obj) {
 		this.obj = obj;
@@ -117,7 +117,7 @@ public class Rilevazione {
 
 	/**
 	 * Fornisce il vettore GDP
-	 * @return dati del gdp
+	 * @return gdpdata dati del gdp dell'oggetto Rilevazione
 	 */
 
 	public Vector<GDP> getGdpdata() {
@@ -127,21 +127,21 @@ public class Rilevazione {
 
 	/**
      * Imposta il vettore GDP
-     * @param dati del gdp
+     * @param  gdpdata dati del gdp da impostare
      */
 	public void setGdpdata(Vector<GDP> gdpdata) {
 		this.gdpdata = gdpdata;
 	}
 	
 	  /**
-	    * Crea una rilevazione
-	    * @param frequenza
+	    * Costruttore oggetto Rilevazione con parametri elaborati
+	    * @param frequenza frequenza di rilevazione
 	    * @param geo città della rilevazione
 	    * @param unit tipo di dato
 	    * @param obj obiettivo della rilevazione
 	    * @param gdpdata vettore gdp
+	    * @param datiElab dati ottenuti dall'elaborazione
 	    */
-
 	public Rilevazione(char frequenza, String geo, String unit, String obj, Vector<GDP> gdpdata, Elaborazione datiElab) {
 		this.frequenza = frequenza;
 		this.geo = geo;
@@ -151,6 +151,14 @@ public class Rilevazione {
 		this.datiElab=datiElab;
 	}
 	
+	  /**
+	    * Costruttore oggetto Rilevazione
+	    * @param frequenza frequenza di rilevazione
+	    * @param geo città della rilevazione
+	    * @param unit tipo di dato
+	    * @param obj obiettivo della rilevazione
+	    * @param gdpdata vettore gdp
+	    */
 	public Rilevazione(char frequenza, String geo, String unit, String obj, Vector<GDP> gdpdata) {
 		this.frequenza = frequenza;
 		this.geo = geo;
@@ -158,7 +166,9 @@ public class Rilevazione {
 		this.obj = obj;
 		this.gdpdata=gdpdata;
 	}
-	
+	/**
+	 * Costruttore di default
+	 */
 	public Rilevazione() {
 		this.frequenza='\0';
 		this.geo ="";
@@ -179,7 +189,12 @@ public class Rilevazione {
 	}
 	
 	
-	
+	/**
+	 * Fornisce sotto forma di vettore di stringhe i valori dei campi di una determinata riga
+	 * @param riga riga da cui ottenere i valori
+	 * @param sizeString dimensione della riga da cui ottenere i valori
+	 * @return stringa con i valori estrapolati da riga
+	 */
 	public String[] setRigaAsString(Rilevazione riga,int sizeString) { 
 		String [] lineString= new String[sizeString];
 		lineString[0]= Character.toString(riga.getFrequenza());
@@ -193,7 +208,15 @@ public class Rilevazione {
 		}
 		return lineString;
 	}
-	
+	/**
+	 * Si occupa di fornire i metadati del data set(la funzione jsonMetaRilevazione dell'interfaccia
+	 * metajson si occuperà di salvare i dati in un file
+	 * @throws NoSuchMethodException segnala l'inesistenza di un metodo 
+	 * al quale la funzione jsonMetaRilevazione 
+	 * sta cercando di accedere
+	 * @throws IOException gestisce gli errori di scrittura da parte della 
+	 * funzione jsonMetaRilevazione  file metadati.json
+	 */
 	public void creaMetaDati() throws NoSuchMethodException, IOException{
 		String campi[]= {"Frequenza","Geo","Unit","Obj","DatiElab","Gdpdata"};
 		MetaJson.jsonMetaRilevazione(this.getClass(), campi);

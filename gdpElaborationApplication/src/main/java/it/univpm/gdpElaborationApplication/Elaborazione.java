@@ -73,7 +73,7 @@ public class Elaborazione{
 	
 	/**
 	 * Fornisce la variazione percentuale dei valori rilevati
-	 * @return variazione
+	 * @return variazione variazione che viene restituita al metodo chiamante
 	 */
 	@metadati(alias="variazione", sourcefield="variazione percentuale fra prima e ultima rilevazione", type="GDP")
 	public double getVariazione() {
@@ -82,7 +82,7 @@ public class Elaborazione{
 
 	/**
 	 * Imposta la variazione percentuale dei valori rilevati
-	 * @param variazione
+	 * @param variazione variazione che deve essere impostata nell'ogetto elaborazione
 	 */
 	public void setVariazione(double variazione) {
 		this.variazione = variazione;
@@ -113,8 +113,8 @@ public class Elaborazione{
 
 	/**
 	 * Calcola il minimo dei valori rilevati
-	 * @param gdpVect
-	 * @return min
+	 * @param gdpVect vettore gdp del quale si deve calcolare il minimo
+	 * @return min elemento con il valore minore fra tutti gli elementi gdp del vettore
 	 */
 	public GDP Minimo(Vector<GDP> gdpVect) {
 		GDP min=gdpVect.get(0);
@@ -128,8 +128,8 @@ public class Elaborazione{
 	
 	/**
 	 * Calcola il massimo dei valori rilevati
-	 * @param gdpVect
-	 * @return max
+	 * @param gdpVect vettore gdp del quale si deve calcolare il massimo
+	 * @return max elemento con il valore massimo fra tutti gli elementi gdp del vettore
 	 */
 	public GDP Massimo(Vector<GDP> gdpVect) {
 		GDP max=gdpVect.get(0);
@@ -157,8 +157,8 @@ public class Elaborazione{
 	
 	/**
 	 * Assegna per ogni riga valore massimo, minimo, media, variazione(calcolata fra il primo e l'ultimo anno)
-	 * @param valoririga
-	 * @return datiElab
+	 * @param valoririga valori gdp sui quali viene effettuata l'elaborazione
+	 * @return datiElab ogetto gdp che contiene le elaborazioni dei valori della riga 
 	 */
 	public Elaborazione elabora(Vector<GDP> valoririga) {
 		Elaborazione datiElab= new Elaborazione();
@@ -171,9 +171,9 @@ public class Elaborazione{
 	
 	/**
 	 * Restituisce un json object che contiene tutti i valori della prima riga
-	 * @param jsonData
-	 * @param startyear
-	 * @return obj
+	 * @param jsonData vettore che contiene i dati da trasformare in oggetto json
+	 * @param startyear elemento che contiene il valore Anno del primo elemento gdp
+	 * @return obj elemento di tipo JSONObject restituito al filtro da aggiungere al json
 	 */
 	@SuppressWarnings("unchecked")
 	public static JSONObject jsonSaveObj(String[] jsonData,int startyear) {
@@ -196,11 +196,11 @@ public class Elaborazione{
 	}
 	
 	/**
-	 * Restituisce un json object che contiene i valori della prima riga fino all'oggetto più un campo per i filtri
-	 * @param jsonData
-	 * @param field
-	 * @param fieldValue
-	 * @return obj
+	 * Restituisce un json object che contiene i valori della prima riga fino all'oggetto più un campo usato come filtro
+	 * @param jsonData vettore che contiene i dati da trasformare in oggetto json
+	 * @param field campo da inserire all'interno dell'oggetto json
+	 * @param fieldValue valore del campo da inserire
+	 * @return obj elemento di tipo JSONObject restituito al filtro da aggiungere al json
 	 */
 	@SuppressWarnings("unchecked")
 	public static JSONObject jsonSaveObj(String[] jsonData,String field,String fieldValue) {
@@ -217,11 +217,11 @@ public class Elaborazione{
 	}
 	
 	/**
-	 * Restituisce un json object che contiene i valori della prima riga a partire da un anno
-	 * @param jsonData
-	 * @param gdpValue
-	 * @param field
-	 * @return obj 
+	 * Restituisce un json object che contiene i valori della prima riga fino all'oggetto più un campo di tipo gdp usato come filtro
+	 * @param jsonData jsonData vettore che contiene i dati da trasformare in oggetto json
+	 * @param gdpValue valori gdp su cui selezionare il campo da filtrare da inserire nell'oggetto json
+	 * @param field campo che deve essere inserito nell'oggetto
+	 * @return obj elemento di tipo JSONObject restituito al filtro da aggiungere al json
 	 */
 	@SuppressWarnings("unchecked")
 	public static JSONObject jsonSaveObj(String[] jsonData,GDP gdpValue, String field) {

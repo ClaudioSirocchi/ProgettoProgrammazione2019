@@ -18,8 +18,8 @@ public interface MetaJson{
 	 * Restituisce i metadati della classe rilevazione
 	 * @param rilevazione classe da cui reperire i metadati
 	 * @param campiRilev campi dei quali ottenere i metadati
-	 * @throws NoSuchMethodException
-	 * @throws IOException
+	 * @throws NoSuchMethodException segnala l'inesistenza di un metodo al quale si sta cercando di accedere
+	 * @throws IOException gestisce gli errori di scrittura del file metadati.json
 	 */
 	static void jsonMetaRilevazione(Class<?> rilevazione, String...campiRilev) throws NoSuchMethodException, IOException{
 		BufferedWriter JsonFile = new BufferedWriter(new FileWriter("savedfile/metadati.json"));
@@ -46,10 +46,9 @@ public interface MetaJson{
 	 * @param GDP classe da cui reperire i metadati
 	 * @param campi campi dei quali ottenere i metadati
 	 * @return appoggio stringa contenente i metadati di gdp
-	 * @throws NoSuchMethodException
-	 * @throws IOException
+	 * @throws NoSuchMethodException segnala l'inesistenza di un metodo al quale si sta cercando di accedere
 	 */
-	static String jsonMetaGDP(Class<?> GDP, String...campi) throws NoSuchMethodException, IOException{
+	static String jsonMetaGDP(Class<?> GDP, String...campi) throws NoSuchMethodException{
 		String gdpJson="[";
 		String appoggio="";
 		for(int i=0; i<campi.length; i++){
