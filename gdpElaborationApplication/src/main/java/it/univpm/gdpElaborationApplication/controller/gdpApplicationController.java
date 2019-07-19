@@ -15,6 +15,7 @@ import it.univpm.gdpElaborationApplication.Filtri;
 @RestController
 public class gdpApplicationController {
 		
+		
 		/**
 		 * Restituisce con il metodo get di spring un json che contiene i dati contenuti in una tabella oppure con l'utilizzo dei parametri, tramite Spring, restituisce i campi della tabella
 		 * che contengono un oggetto indicato oppure i campi della tabella che contengono un geo indicato
